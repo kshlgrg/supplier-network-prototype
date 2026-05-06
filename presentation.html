@@ -462,6 +462,370 @@
       font-weight: 700;
     }
 
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.74fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .product-stage,
+    .screen-wall,
+    .visual-stack,
+    .allocation-board,
+    .process-board,
+    .doc-board {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+    }
+
+    .product-stage {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .mini-sidebar {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 18px 14px;
+      border-right: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .mini-dot,
+    .map-node {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .mini-line {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .mini-screen {
+      padding: 20px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .mini-title {
+      height: 34px;
+      width: 68%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(33, 197, 139, 0.72), rgba(79, 140, 255, 0.62));
+    }
+
+    .mock-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mock-kpi {
+      min-height: 82px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mock-kpi strong {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .mock-kpi span {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .mock-chart {
+      height: 120px;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .mock-chart span,
+    .histogram span {
+      flex: 1;
+      min-width: 10px;
+      border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, var(--green), var(--blue));
+    }
+
+    .network-visual {
+      position: relative;
+      min-height: 250px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 42px 42px;
+      overflow: hidden;
+    }
+
+    .network-visual::before,
+    .network-visual::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      transform-origin: left center;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .network-visual::before {
+      width: 230px;
+      left: 105px;
+      top: 126px;
+      transform: rotate(-22deg);
+    }
+
+    .network-visual::after {
+      width: 220px;
+      left: 108px;
+      top: 126px;
+      transform: rotate(28deg);
+    }
+
+    .map-node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      color: var(--ink);
+      font-weight: 800;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.24);
+    }
+
+    .map-node.main {
+      left: 42%;
+      top: 38%;
+      width: 74px;
+      height: 74px;
+      background: var(--green);
+    }
+
+    .map-node.one {
+      left: 10%;
+      top: 17%;
+      background: var(--blue);
+    }
+
+    .map-node.two {
+      right: 12%;
+      top: 12%;
+      background: var(--amber);
+    }
+
+    .map-node.three {
+      left: 18%;
+      bottom: 16%;
+      background: var(--red);
+    }
+
+    .map-node.four {
+      right: 18%;
+      bottom: 18%;
+      background: #d8dee8;
+    }
+
+    .journey-ribbon {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ribbon-step {
+      min-height: 170px;
+      padding: 20px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .ribbon-step:last-child {
+      border-right: 0;
+    }
+
+    .ribbon-step strong {
+      display: block;
+      font-size: 1.05rem;
+      margin: 12px 0 8px;
+    }
+
+    .ribbon-step span:last-child {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .process-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      margin-top: 28px;
+      background: var(--line);
+    }
+
+    .process-card {
+      padding: 22px;
+      min-height: 190px;
+      background: rgba(18, 25, 35, 0.96);
+    }
+
+    .process-card h3,
+    .doc-card h3 {
+      margin-top: 14px;
+    }
+
+    .process-card p,
+    .doc-card p {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .data-board {
+      display: grid;
+      grid-template-columns: 0.9fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .data-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .data-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .data-row strong {
+      color: var(--green);
+    }
+
+    .data-row span {
+      color: var(--muted);
+    }
+
+    .screen-wall {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 16px;
+      margin-top: 28px;
+    }
+
+    .screen-tile {
+      min-height: 132px;
+      display: grid;
+      align-content: space-between;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .screen-bars {
+      display: flex;
+      align-items: end;
+      gap: 6px;
+      height: 44px;
+    }
+
+    .screen-bars span {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      background: var(--blue);
+      opacity: 0.86;
+    }
+
+    .histogram {
+      height: 180px;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.14);
+      margin-top: 18px;
+    }
+
+    .allocation-board {
+      padding: 20px;
+      margin-top: 28px;
+    }
+
+    .allocation-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 56px;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .allocation-row:last-child {
+      border-bottom: 0;
+    }
+
+    .allocation-bar {
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .allocation-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .doc-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      margin-top: 28px;
+      background: var(--line);
+    }
+
+    .doc-card {
+      min-height: 190px;
+      padding: 22px;
+      background: rgba(18, 25, 35, 0.96);
+    }
+
     .mini-note {
       margin-top: 18px;
       color: var(--muted);
@@ -488,16 +852,30 @@
       }
 
       .split,
+      .hero-layout,
       .grid-2,
       .grid-3,
       .grid-4,
       .workflow,
       .architecture,
-      .roadmap {
+      .roadmap,
+      .journey-ribbon,
+      .process-board,
+      .data-board,
+      .screen-wall,
+      .doc-board {
         grid-template-columns: 1fr;
       }
 
       .arrow-block {
+        display: none;
+      }
+
+      .product-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-sidebar {
         display: none;
       }
 
@@ -566,21 +944,56 @@
       </div>
       <div class="top-actions">
         <a class="link-button" href="./index.html">Open Prototype</a>
+        <a class="link-button" href="./docs/design-process.md">Design Process</a>
         <button class="link-button" type="button" id="print-deck">Print / Save PDF</button>
       </div>
     </header>
 
     <main class="slides" aria-live="polite">
       <section class="slide active">
-        <div class="slide-inner">
-          <span class="eyebrow">Complete project explanation</span>
-          <h1>Supplier Helper</h1>
-          <p class="lead">A browser-based prototype that guides a user from first landing to supplier data entry, risk understanding, partner comparison, Monte Carlo simulation, and optimized allocation recommendations.</p>
-          <div class="grid-4">
-            <div class="metric"><strong>1</strong><span>Guided workspace creation flow</span></div>
-            <div class="metric"><strong>6</strong><span>Core product screens</span></div>
-            <div class="metric"><strong>3k</strong><span>Default simulation iterations</span></div>
-            <div class="metric"><strong>100%</strong><span>Static and GitHub Pages ready</span></div>
+        <div class="slide-inner hero-layout">
+          <div>
+            <span class="eyebrow">Complete project explanation</span>
+            <h1>Supplier Helper</h1>
+            <p class="lead">A browser-based prototype that guides a user from first landing to supplier data entry, risk understanding, partner comparison, Monte Carlo simulation, and optimized allocation recommendations.</p>
+            <div class="grid-4">
+              <div class="metric"><strong>1</strong><span>Guided workspace creation flow</span></div>
+              <div class="metric"><strong>6</strong><span>Core product screens</span></div>
+              <div class="metric"><strong>3k</strong><span>Default simulation iterations</span></div>
+              <div class="metric"><strong>100%</strong><span>GitHub Pages ready</span></div>
+            </div>
+          </div>
+          <div class="product-stage" aria-hidden="true">
+            <div class="mini-sidebar">
+              <div class="mini-dot"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line" style="width: 70%;"></div>
+            </div>
+            <div class="mini-screen">
+              <div class="mini-title"></div>
+              <div class="mock-kpi-row">
+                <div class="mock-kpi"><strong>12</strong><span>Partners</span></div>
+                <div class="mock-kpi"><strong>42%</strong><span>Dependency</span></div>
+                <div class="mock-kpi"><strong>84</strong><span>Health</span></div>
+              </div>
+              <div class="mock-chart">
+                <span style="height: 45%;"></span>
+                <span style="height: 72%;"></span>
+                <span style="height: 56%;"></span>
+                <span style="height: 86%;"></span>
+                <span style="height: 66%;"></span>
+                <span style="height: 92%;"></span>
+              </div>
+              <div class="network-visual">
+                <div class="map-node main">You</div>
+                <div class="map-node one">S1</div>
+                <div class="map-node two">S2</div>
+                <div class="map-node three">R</div>
+                <div class="map-node four">B1</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -592,8 +1005,17 @@
             <h2>Most supplier decisions are made with partial visibility.</h2>
             <p class="lead">Small teams often know which supplier feels risky, but they do not have a simple way to connect dependency, reliability, lead time, disruption likelihood, and cost into one decision workflow.</p>
           </div>
-          <div class="quote-panel">
-            <p>The product turns supplier data into a next action: who to trust, where risk sits, and how work should be allocated.</p>
+          <div class="visual-stack">
+            <div class="network-visual">
+              <div class="map-node main">Me</div>
+              <div class="map-node one">65%</div>
+              <div class="map-node two">18%</div>
+              <div class="map-node three">High</div>
+              <div class="map-node four">New</div>
+            </div>
+            <div class="quote-panel" style="margin: 14px;">
+              <p>The product turns supplier data into a next action: who to trust, where risk sits, and how work should be allocated.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -624,14 +1046,28 @@
 
       <section class="slide">
         <div class="slide-inner">
+          <span class="eyebrow">Design process</span>
+          <h2>Designed by removing friction before adding sophistication.</h2>
+          <p class="lead">The process focused on making the first user journey extremely simple while still preserving the data needed for real network optimization.</p>
+          <div class="process-board">
+            <div class="process-card"><span class="tag">01</span><h3>Discover</h3><p>Mapped what supplier teams need to know: dependency, reliability, disruption exposure, and next action.</p></div>
+            <div class="process-card"><span class="tag blue">02</span><h3>Simplify</h3><p>Collapsed duplicate setup paths into one guided sign-up and moved deeper edits into Add Info.</p></div>
+            <div class="process-card"><span class="tag amber">03</span><h3>Prototype</h3><p>Connected every input to visible outputs: KPIs, graph, comparison, simulation, and optimizer.</p></div>
+            <div class="process-card"><span class="tag red">04</span><h3>Document</h3><p>Captured user journey, technical working, and design rationale so the project can be explained and extended.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
           <span class="eyebrow">User journey</span>
           <h2>One clear path from landing to decision.</h2>
-          <div class="workflow">
-            <div class="step"><span class="step-number">1</span><h3>Landing</h3><p>User starts from a simple showcase page and creates a workspace.</p></div>
-            <div class="step"><span class="step-number">2</span><h3>Sign up</h3><p>One-question-at-a-time flow collects only the essential business context.</p></div>
-            <div class="step"><span class="step-number">3</span><h3>Add info</h3><p>User enters suppliers, buyers, dependence, risk, cost, and recovery data.</p></div>
-            <div class="step"><span class="step-number">4</span><h3>Analyze</h3><p>Dashboard, map, risk, comparison, and simulation screens update from state.</p></div>
-            <div class="step"><span class="step-number">5</span><h3>Act</h3><p>Optimization recommends allocation changes with reasons and constraints.</p></div>
+          <div class="journey-ribbon">
+            <div class="ribbon-step"><span class="step-number">1</span><strong>Landing</strong><span>User starts from a simple showcase page and creates a workspace.</span></div>
+            <div class="ribbon-step"><span class="step-number">2</span><strong>Sign up</strong><span>One-question-at-a-time flow collects only essential business context.</span></div>
+            <div class="ribbon-step"><span class="step-number">3</span><strong>Add info</strong><span>User enters suppliers, buyers, dependence, risk, cost, and recovery data.</span></div>
+            <div class="ribbon-step"><span class="step-number">4</span><strong>Analyze</strong><span>Dashboard, map, risk, comparison, and simulation screens update from state.</span></div>
+            <div class="ribbon-step"><span class="step-number">5</span><strong>Act</strong><span>Optimization recommends allocation changes with reasons and constraints.</span></div>
           </div>
         </div>
       </section>
@@ -641,19 +1077,20 @@
           <span class="eyebrow">Data collected</span>
           <h2>Every field exists because it supports a decision.</h2>
           <p class="lead">The prototype collects workspace context first, then partner-level operating data when the user is ready to add suppliers or buyers.</p>
-          <div class="data-cloud">
-            <div class="data-pill"><strong>Company</strong><span> root node and reports</span></div>
-            <div class="data-pill"><strong>Role</strong><span> workflow context</span></div>
-            <div class="data-pill"><strong>Critical category</strong><span> optimization focus</span></div>
-            <div class="data-pill"><strong>Annual spend</strong><span> exposure estimate</span></div>
-            <div class="data-pill"><strong>Planning cycle</strong><span> time horizon</span></div>
-            <div class="data-pill"><strong>Risk level</strong><span> starting prior</span></div>
-            <div class="data-pill"><strong>Weight</strong><span> concentration risk</span></div>
-            <div class="data-pill"><strong>Lead time</strong><span> disruption pressure</span></div>
-            <div class="data-pill"><strong>Recovery days</strong><span> continuity planning</span></div>
-            <div class="data-pill"><strong>Capacity share</strong><span> allocation limit</span></div>
-            <div class="data-pill"><strong>Cost index</strong><span> savings tradeoff</span></div>
-            <div class="data-pill"><strong>Compliance</strong><span> trust constraint</span></div>
+          <div class="data-board">
+            <div class="network-visual">
+              <div class="map-node main">Profile</div>
+              <div class="map-node one">Spend</div>
+              <div class="map-node two">Risk</div>
+              <div class="map-node three">Lead</div>
+              <div class="map-node four">Trust</div>
+            </div>
+            <div class="data-list">
+              <div class="data-row"><strong>Workspace</strong><span>Company, user role, critical category, annual spend, planning cycle, goal.</span></div>
+              <div class="data-row"><strong>Partners</strong><span>Name, type, risk level, reliability score, relationship weight.</span></div>
+              <div class="data-row"><strong>Operations</strong><span>Lead time, recovery days, disruption probability, capacity share.</span></div>
+              <div class="data-row"><strong>Decision</strong><span>Cost index, switching cost, compliance score, sharing preference.</span></div>
+            </div>
           </div>
         </div>
       </section>
@@ -662,13 +1099,13 @@
         <div class="slide-inner">
           <span class="eyebrow">Core features</span>
           <h2>The prototype is not just screens; inputs change outputs.</h2>
-          <div class="grid-3">
-            <div class="panel"><h3>Dashboard</h3><p>Shows readiness, KPIs, alerts, health trend, and supplier risk distribution.</p></div>
-            <div class="panel"><h3>Network map</h3><p>Uses D3 to show supplier and buyer relationships as a weighted graph.</p></div>
-            <div class="panel"><h3>Add Info</h3><p>Lets the user edit profile, add partners, and change sharing preferences.</p></div>
-            <div class="panel"><h3>Pick Best</h3><p>Compares suppliers with adjustable price, reliability, delivery, and risk weights.</p></div>
-            <div class="panel"><h3>Problems</h3><p>Surfaces risk blocks, critical alerts, timeline, and Monte Carlo scenario outputs.</p></div>
-            <div class="panel"><h3>Best Plan</h3><p>Generates an allocation table that balances cost, resilience, and constraints.</p></div>
+          <div class="screen-wall">
+            <div class="screen-tile"><h3>Dashboard</h3><div class="screen-bars"><span style="height: 55%;"></span><span style="height: 76%;"></span><span style="height: 42%;"></span></div></div>
+            <div class="screen-tile"><h3>Network map</h3><div class="screen-bars"><span style="height: 82%; background: var(--green);"></span><span style="height: 48%;"></span><span style="height: 68%; background: var(--amber);"></span></div></div>
+            <div class="screen-tile"><h3>Add Info</h3><div class="screen-bars"><span style="height: 35%;"></span><span style="height: 55%;"></span><span style="height: 85%;"></span></div></div>
+            <div class="screen-tile"><h3>Pick Best</h3><div class="screen-bars"><span style="height: 45%; background: var(--amber);"></span><span style="height: 90%; background: var(--green);"></span><span style="height: 62%;"></span></div></div>
+            <div class="screen-tile"><h3>Problems</h3><div class="screen-bars"><span style="height: 86%; background: var(--red);"></span><span style="height: 50%; background: var(--amber);"></span><span style="height: 38%; background: var(--green);"></span></div></div>
+            <div class="screen-tile"><h3>Best Plan</h3><div class="screen-bars"><span style="height: 70%; background: var(--green);"></span><span style="height: 58%;"></span><span style="height: 32%; background: var(--red);"></span></div></div>
           </div>
         </div>
       </section>
@@ -700,6 +1137,15 @@
             <div class="panel">
               <h3>Monte Carlo simulator</h3>
               <p>Runs scenario draws using planning horizon, iterations, demand volatility, recovery buffer, supplier weight, disruption probability, lead time, recovery days, and annual spend.</p>
+              <div class="histogram" aria-hidden="true">
+                <span style="height: 28%;"></span>
+                <span style="height: 44%;"></span>
+                <span style="height: 78%;"></span>
+                <span style="height: 96%;"></span>
+                <span style="height: 73%;"></span>
+                <span style="height: 46%;"></span>
+                <span style="height: 24%;"></span>
+              </div>
               <div class="formula">
                 <div class="formula-row"><strong>Stockout probability</strong><span>How often disruption pressure exceeds the buffer.</span></div>
                 <div class="formula-row"><strong>Expected loss</strong><span>Average financial impact across scenarios.</span></div>
@@ -728,6 +1174,12 @@
             <div class="panel"><span class="tag blue">Limit</span><h3>Constraints</h3><p>Capacity share, maximum strategic share, high-risk cap, compliance cap, and continuity minimums.</p></div>
             <div class="panel"><span class="tag amber">Result</span><h3>Portfolio plan</h3><p>Recommended share per supplier, portfolio score, concentration reduction, and estimated cost or resilience impact.</p></div>
           </div>
+          <div class="allocation-board">
+            <div class="allocation-row"><strong>Nova Fabrication</strong><div class="allocation-bar"><span style="width: 34%;"></span></div><span>34%</span></div>
+            <div class="allocation-row"><strong>Aurora Metals</strong><div class="allocation-bar"><span style="width: 28%;"></span></div><span>28%</span></div>
+            <div class="allocation-row"><strong>Orion Precision</strong><div class="allocation-bar"><span style="width: 21%;"></span></div><span>21%</span></div>
+            <div class="allocation-row"><strong>Risky Legacy</strong><div class="allocation-bar"><span style="width: 17%; background: var(--red);"></span></div><span>17%</span></div>
+          </div>
         </div>
       </section>
 
@@ -748,6 +1200,18 @@
 
       <section class="slide">
         <div class="slide-inner">
+          <span class="eyebrow">Documentation package</span>
+          <h2>The project now has separate narrative, technical, and design documentation.</h2>
+          <div class="doc-board">
+            <div class="doc-card"><span class="tag">UX</span><h3>User journey</h3><p>Explains the target user, data needs, journey map, design principles, and production path.</p></div>
+            <div class="doc-card"><span class="tag blue">Tech</span><h3>Technical report</h3><p>Explains the app structure, state model, graph, comparison, simulation, and optimizer.</p></div>
+            <div class="doc-card"><span class="tag amber">Design</span><h3>Design process</h3><p>Explains the design goals, heuristic decisions, content strategy, visual choices, and validation checklist.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
           <span class="eyebrow">Deployment</span>
           <h2>Published as a public GitHub Pages prototype.</h2>
           <div class="grid-2">
@@ -760,6 +1224,11 @@
               <h3>Repository</h3>
               <p><a class="link-button" href="https://github.com/kshlgrg/supplier-network-prototype">Open source repo</a></p>
               <p class="mini-note">The workflow deploys from `main` using GitHub Actions.</p>
+            </div>
+            <div class="panel">
+              <h3>Design process</h3>
+              <p><a class="link-button" href="./docs/design-process.md">Open design documentation</a></p>
+              <p class="mini-note">Documents how the simplified guided experience was designed.</p>
             </div>
           </div>
         </div>
@@ -799,7 +1268,7 @@
       <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="nav-actions">
         <button class="icon-button" type="button" id="prev-slide" aria-label="Previous slide">&larr;</button>
-        <span class="counter" id="slide-counter">1 / 13</span>
+        <span class="counter" id="slide-counter">1 / 15</span>
         <button class="icon-button" type="button" id="next-slide" aria-label="Next slide">&rarr;</button>
       </div>
     </footer>

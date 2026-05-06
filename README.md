@@ -35,3 +35,4 @@ Then open `http://127.0.0.1:3000/`.
 - `data.js` - sample data
 - `docs/user-journey.md` - user journey and design rationale
 - `docs/technical-report.md` - technical walkthrough
+- `docs/design-process.md` - design process, usability principles, and validation checklist
