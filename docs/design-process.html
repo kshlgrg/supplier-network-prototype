@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplier Helper Design Process</title>
+  <meta name="description" content="Visual and printable design process documentation for the Supplier Helper prototype.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f8fafc;
+      --ink: #17202a;
+      --muted: #5d6b7a;
+      --line: #d6dee8;
+      --panel: #ffffff;
+      --soft: #edf3f7;
+      --blue: #2563eb;
+      --green: #0f9f72;
+      --amber: #b7791f;
+      --red: #d14343;
+      --violet: #6d5bd0;
+      --font-sans: "DM Sans", sans-serif;
+      --font-mono: "Space Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #eef5f9 0, var(--paper) 420px),
+        var(--paper);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    .doc-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 28px;
+      border-bottom: 1px solid rgba(23, 32, 42, 0.1);
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      font-weight: 800;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--panel);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      border-color: var(--ink);
+      color: white;
+      background: var(--ink);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 70px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.8fr);
+      gap: 30px;
+      align-items: center;
+      min-height: 560px;
+      padding: 32px 0 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.04;
+      letter-spacing: 0;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.22rem;
+      line-height: 1.65;
+    }
+
+    .hero-panel,
+    .card,
+    .visual-card,
+    .principle,
+    .timeline-step,
+    .score-row,
+    .artifact {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 18px 44px rgba(51, 65, 85, 0.08);
+    }
+
+    .hero-panel {
+      padding: 18px;
+    }
+
+    .mock-window {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #101820;
+      color: white;
+    }
+
+    .mock-chrome {
+      display: flex;
+      gap: 7px;
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mock-chrome span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .mock-chrome span:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .mock-chrome span:nth-child(3) {
+      background: var(--green);
+    }
+
+    .mock-body {
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+    }
+
+    .mock-title {
+      height: 34px;
+      width: 72%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mock-metric {
+      min-height: 84px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mock-metric strong {
+      display: block;
+      font-size: 1.6rem;
+    }
+
+    .mock-metric span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.78rem;
+    }
+
+    .mock-bars {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 150px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mock-bars span {
+      flex: 1;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(180deg, var(--green), var(--blue));
+    }
+
+    section {
+      padding: 54px 0;
+      border-top: 1px solid rgba(23, 32, 42, 0.08);
+    }
+
+    .section-head {
+      max-width: 820px;
+      margin-bottom: 24px;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card,
+    .principle,
+    .timeline-step,
+    .artifact {
+      padding: 20px;
+    }
+
+    .card p,
+    .principle p,
+    .timeline-step p,
+    .artifact p,
+    .score-row span,
+    .caption {
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(15, 159, 114, 0.1);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .tag.blue {
+      color: var(--blue);
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    .tag.amber {
+      color: var(--amber);
+      background: rgba(183, 121, 31, 0.12);
+    }
+
+    .tag.red {
+      color: var(--red);
+      background: rgba(209, 67, 67, 0.1);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .timeline-step {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .journey-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .journey-column {
+      display: grid;
+      gap: 12px;
+    }
+
+    .visual-card {
+      padding: 20px;
+    }
+
+    .network-diagram {
+      position: relative;
+      min-height: 300px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(#e4edf4 1px, transparent 1px),
+        linear-gradient(90deg, #e4edf4 1px, transparent 1px),
+        #f9fbfd;
+      background-size: 38px 38px;
+      overflow: hidden;
+    }
+
+    .network-diagram::before,
+    .network-diagram::after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      background: rgba(23, 32, 42, 0.14);
+      transform-origin: left center;
+    }
+
+    .network-diagram::before {
+      width: 260px;
+      left: 105px;
+      top: 148px;
+      transform: rotate(-24deg);
+    }
+
+    .network-diagram::after {
+      width: 250px;
+      left: 110px;
+      top: 150px;
+      transform: rotate(28deg);
+    }
+
+    .node {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--blue);
+      font-weight: 800;
+      box-shadow: 0 18px 34px rgba(51, 65, 85, 0.16);
+    }
+
+    .node.main {
+      left: 42%;
+      top: 37%;
+      width: 86px;
+      height: 86px;
+      background: var(--green);
+    }
+
+    .node.n1 {
+      left: 8%;
+      top: 18%;
+    }
+
+    .node.n2 {
+      right: 10%;
+      top: 14%;
+      background: var(--amber);
+    }
+
+    .node.n3 {
+      left: 16%;
+      bottom: 14%;
+      background: var(--red);
+    }
+
+    .node.n4 {
+      right: 16%;
+      bottom: 16%;
+      background: var(--violet);
+    }
+
+    .scorecard {
+      display: grid;
+      gap: 10px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 70px;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .score-bar {
+      height: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--soft);
+    }
+
+    .score-bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .blueprint {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+    }
+
+    .blueprint-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .blueprint-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .blueprint-row strong {
+      color: var(--blue);
+    }
+
+    .print-note {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #e9f7f1;
+      margin-top: 22px;
+    }
+
+    .print-note strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      padding: 34px 0 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .doc-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .page {
+        width: min(100% - 24px, 720px);
+      }
+
+      .hero,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .timeline,
+      .journey-map,
+      .blueprint,
+      .print-note {
+        grid-template-columns: 1fr;
+      }
+
+      .score-row,
+      .blueprint-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 13mm;
+      }
+
+      body {
+        background: white;
+        color: #111827;
+        font-size: 10.5pt;
+      }
+
+      .doc-topbar,
+      .top-actions,
+      .button {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 0;
+        page-break-after: always;
+      }
+
+      section {
+        padding: 18mm 0 8mm;
+        page-break-inside: avoid;
+      }
+
+      h1 {
+        font-size: 42pt;
+      }
+
+      h2 {
+        font-size: 24pt;
+      }
+
+      .hero-panel,
+      .card,
+      .visual-card,
+      .principle,
+      .timeline-step,
+      .score-row,
+      .artifact,
+      .print-note {
+        box-shadow: none;
+      }
+
+      a {
+        color: #111827;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-topbar">
+    <div class="brand">
+      <div class="brand-mark">SH</div>
+      <div>
+        <strong>Supplier Helper Design Process</strong>
+        <span>Visual documentation and printable PDF source</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a class="button" href="../index.html">Open Prototype</a>
+      <a class="button" href="../presentation.html">Open Deck</a>
+      <a class="button" href="./design-process.md">Markdown Version</a>
+      <button class="button primary" type="button" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Design process documentation</span>
+        <h1>Making network optimization feel simple.</h1>
+        <p class="lead">This document explains how the Supplier Helper prototype was designed: the user assumptions, research framing, heuristics, information architecture, visual language, interaction rules, and validation checklist.</p>
+        <div class="print-note">
+          <div>
+            <strong>Printable by design</strong>
+            <span>Use the top-right button or browser print dialog and choose "Save as PDF". The document includes A4 print rules.</span>
+          </div>
+          <span class="tag blue">PDF ready</span>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="mock-window" aria-label="Visual mock dashboard">
+          <div class="mock-chrome"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-title"></div>
+            <div class="mock-grid">
+              <div class="mock-metric"><strong>1</strong><span>guided path</span></div>
+              <div class="mock-metric"><strong>8</strong><span>core inputs</span></div>
+              <div class="mock-metric"><strong>6</strong><span>decision views</span></div>
+            </div>
+            <div class="mock-bars">
+              <span style="height: 42%;"></span>
+              <span style="height: 76%;"></span>
+              <span style="height: 58%;"></span>
+              <span style="height: 92%;"></span>
+              <span style="height: 64%;"></span>
+              <span style="height: 84%;"></span>
+            </div>
+          </div>
+        </div>
+        <p class="caption" style="margin-top: 12px;">The product behaves like a guided decision tool first and an analytics platform second.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">1. Product intent</span>
+        <h2>Start with human confidence, then reveal analytical depth.</h2>
+        <p class="lead">The prototype is for users who understand supplier pain but may not understand graph analytics or optimization terminology. The design goal is to make them feel oriented before asking for data.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card"><span class="tag">Understand</span><h3>What the tool does</h3><p>The landing page states the offer and sends users to one guided start.</p></div>
+        <div class="card"><span class="tag blue">Enter</span><h3>Only useful data</h3><p>Sign-up collects just the fields required for meaningful downstream analysis.</p></div>
+        <div class="card"><span class="tag amber">See</span><h3>Immediate outputs</h3><p>KPIs, graph, charts, simulation, and optimizer all react to state changes.</p></div>
+        <div class="card"><span class="tag red">Act</span><h3>Choose the next move</h3><p>The final output is a practical allocation recommendation, not a generic report.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">2. User assumption</span>
+        <h2>Designed for operators who need clarity, not complexity.</h2>
+      </div>
+      <div class="journey-map">
+        <div class="visual-card">
+          <span class="tag">Business owner</span>
+          <h3>Needs simple risk visibility</h3>
+          <p>They want to know which supplier could hurt the business and what action reduces dependency.</p>
+        </div>
+        <div class="visual-card">
+          <span class="tag blue">Operations manager</span>
+          <h3>Needs continuity planning</h3>
+          <p>They care about lead time, recovery days, disruption pressure, and backup capacity.</p>
+        </div>
+        <div class="visual-card">
+          <span class="tag amber">Procurement lead</span>
+          <h3>Needs explainable tradeoffs</h3>
+          <p>They compare suppliers on cost, reliability, delivery, risk, compliance, and capacity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">3. Journey simplification</span>
+        <h2>One user goal gets one obvious route.</h2>
+        <p class="lead">The design removed duplicate setup paths and made the first-time journey linear. Advanced edits still exist, but they no longer compete with the guided start.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-step"><span class="tag">01</span><h3>Landing</h3><p>Clear product entry and showcase context.</p></div>
+        <div class="timeline-step"><span class="tag blue">02</span><h3>Create</h3><p>One guided sign-up, one question at a time.</p></div>
+        <div class="timeline-step"><span class="tag amber">03</span><h3>Add info</h3><p>Supplier and buyer data appears after basics.</p></div>
+        <div class="timeline-step"><span class="tag">04</span><h3>Analyze</h3><p>Dashboard, map, risk, and comparison update.</p></div>
+        <div class="timeline-step"><span class="tag red">05</span><h3>Optimize</h3><p>User gets recommended allocation and reasons.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">4. Data rationale</span>
+        <h2>Every field has a job in the decision model.</h2>
+      </div>
+      <div class="blueprint">
+        <div class="network-diagram" aria-label="Supplier network visual">
+          <div class="node main">You</div>
+          <div class="node n1">Spend</div>
+          <div class="node n2">Risk</div>
+          <div class="node n3">Lead</div>
+          <div class="node n4">Trust</div>
+        </div>
+        <div class="blueprint-list">
+          <div class="blueprint-row"><strong>Workspace</strong><span>Company, role, critical category, annual spend, planning cycle, goal.</span></div>
+          <div class="blueprint-row"><strong>Partners</strong><span>Name, type, risk level, reliability score, relationship weight.</span></div>
+          <div class="blueprint-row"><strong>Operations</strong><span>Lead time, recovery days, disruption probability, capacity share.</span></div>
+          <div class="blueprint-row"><strong>Decision</strong><span>Cost index, switching cost, compliance score, sharing preference.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">5. Heuristic scorecard</span>
+        <h2>Usability heuristics translated into product behavior.</h2>
+      </div>
+      <div class="scorecard">
+        <div class="score-row"><strong>Visibility of system status</strong><div class="score-bar"><i style="width: 92%;"></i></div><span>Checklist, KPIs, progress dots, live badges.</span></div>
+        <div class="score-row"><strong>Match with real world</strong><div class="score-bar"><i style="width: 88%;"></i></div><span>Plain labels: Problems, Pick Best, Best Plan.</span></div>
+        <div class="score-row"><strong>User control and freedom</strong><div class="score-bar"><i style="width: 84%;"></i></div><span>Edit profile, add partners, reset, switch theme.</span></div>
+        <div class="score-row"><strong>Recognition over recall</strong><div class="score-bar"><i style="width: 90%;"></i></div><span>Suggested answers and visible setup progress.</span></div>
+        <div class="score-row"><strong>Error prevention</strong><div class="score-bar"><i style="width: 78%;"></i></div><span>Defaults, bounded numbers, simple selects.</span></div>
+        <div class="score-row"><strong>Progressive disclosure</strong><div class="score-bar"><i style="width: 94%;"></i></div><span>Basics first, deeper supplier data later.</span></div>
+        <div class="score-row"><strong>Help and recovery</strong><div class="score-bar"><i style="width: 82%;"></i></div><span>Reset path, editable data, no dead-end setup.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">6. Information architecture</span>
+        <h2>The navigation follows the user's thinking sequence.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="principle"><span class="tag">Home</span><h3>What should I do?</h3><p>Start, progress, and simple result framing.</p></div>
+        <div class="principle"><span class="tag blue">Map</span><h3>Who am I connected to?</h3><p>Spatial view of supplier and buyer relationships.</p></div>
+        <div class="principle"><span class="tag amber">Pick Best</span><h3>Which partner is better?</h3><p>Weighted comparison and tradeoff testing.</p></div>
+        <div class="principle"><span class="tag red">Problems</span><h3>What can go wrong?</h3><p>Risk dashboard and Monte Carlo scenario outputs.</p></div>
+        <div class="principle"><span class="tag">Best Plan</span><h3>What should I change?</h3><p>Recommended allocation, reasons, and constraints.</p></div>
+        <div class="principle"><span class="tag blue">Add Info</span><h3>What data is missing?</h3><p>Profile, partner data, and sharing controls.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">7. Visual design direction</span>
+        <h2>Operational, calm, and decision-focused.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Plain language</h3><p>The UI avoids model jargon until analytics need explanation.</p></div>
+        <div class="card"><h3>Compact surfaces</h3><p>Cards are used for decision units, not as decorative page containers.</p></div>
+        <div class="card"><h3>Status color</h3><p>Green, amber, red, and blue communicate safety, warning, risk, and action.</p></div>
+        <div class="card"><h3>Light and dark themes</h3><p>The prototype can be shown in different presentation environments.</p></div>
+        <div class="card"><h3>Graph and charts</h3><p>Visual analytics build credibility without making the user parse raw tables first.</p></div>
+        <div class="card"><h3>Landing as entry</h3><p>The landing page supports showcase needs, while the app remains the main experience.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">8. Interaction rules</span>
+        <h2>A control is only useful if it changes the product.</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card"><h3>Input to output</h3><p>Completing sign-up updates profile, checklist, navigation state, and dashboard copy.</p></div>
+        <div class="card"><h3>Partner add</h3><p>Adding a supplier updates graph, KPIs, comparison choices, risk view, and optimizer.</p></div>
+        <div class="card"><h3>Simulation run</h3><p>Monte Carlo controls update stockout probability, expected loss, percentile loss, and service level.</p></div>
+        <div class="card"><h3>Optimization</h3><p>The best-plan view translates supplier data into allocation, score, reason, and constraint.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">9. Accessibility and simplicity</span>
+        <h2>Designed for low training burden.</h2>
+      </div>
+      <div class="grid-4">
+        <div class="artifact"><span class="tag">Readable</span><h3>Short labels</h3><p>Navigation and actions use familiar business words.</p></div>
+        <div class="artifact"><span class="tag blue">Guided</span><h3>One question</h3><p>Sign-up asks one thing at a time with suggested answers.</p></div>
+        <div class="artifact"><span class="tag amber">Reversible</span><h3>Edit paths</h3><p>The user can reset, revise, and correct profile or partner data.</p></div>
+        <div class="artifact"><span class="tag red">Visible</span><h3>Status signals</h3><p>Risk and progress are visible without requiring memory.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">10. Validation checklist</span>
+        <h2>What must work before presenting the prototype.</h2>
+      </div>
+      <div class="scorecard">
+        <div class="score-row"><strong>New user can create workspace</strong><div class="score-bar"><i style="width: 100%;"></i></div><span>Landing to guided sign-up.</span></div>
+        <div class="score-row"><strong>Only one obvious setup route</strong><div class="score-bar"><i style="width: 100%;"></i></div><span>No duplicate onboarding path on Home.</span></div>
+        <div class="score-row"><strong>Partner data changes outputs</strong><div class="score-bar"><i style="width: 100%;"></i></div><span>Graph, KPIs, risk, comparison, optimizer.</span></div>
+        <div class="score-row"><strong>Monte Carlo run updates results</strong><div class="score-bar"><i style="width: 100%;"></i></div><span>Scenario outputs visibly change.</span></div>
+        <div class="score-row"><strong>Presentation and docs open</strong><div class="score-bar"><i style="width: 100%;"></i></div><span>Deck, markdown, and this visual document are linked.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="eyebrow">11. Current limits and next iteration</span>
+        <h2>The design is ready for demo, then usability testing.</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card"><h3>Current limitations</h3><p>Local storage only, sample data, no auth, no CSV import, no production error handling, and simulation assumptions are illustrative.</p></div>
+        <div class="card"><h3>Next design work</h3><p>Add import flow, saved scenarios, executive summary export, persona-specific onboarding, graph accessibility, and usability testing with target users.</p></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Supplier Helper prototype design documentation. Related files: `docs/design-process.md`, `docs/user-journey.md`, `docs/technical-report.md`, and `presentation.html`.
+    </footer>
+  </main>
+</body>
+</html>

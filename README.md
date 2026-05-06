@@ -16,6 +16,8 @@ A lightweight prototype for supplier network planning, onboarding, risk review, 
 
 - Prototype: https://kshlgrg.github.io/supplier-network-prototype/
 - Presentation: https://kshlgrg.github.io/supplier-network-prototype/presentation.html
+- Visual design process: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.html
+- Design process PDF: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.pdf
 
 ## Run Locally
 
@@ -36,3 +38,5 @@ Then open `http://127.0.0.1:3000/`.
 - `docs/user-journey.md` - user journey and design rationale
 - `docs/technical-report.md` - technical walkthrough
 - `docs/design-process.md` - design process, usability principles, and validation checklist
+- `docs/design-process.html` - visual and printable version of the design process documentation
+- `docs/design-process.pdf` - exported PDF version of the visual design process documentation
