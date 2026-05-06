@@ -9,7 +9,13 @@ A lightweight prototype for supplier network planning, onboarding, risk review, 
 - Supplier and buyer data entry
 - Risk and network overview
 - Optimization and comparison views
+- Browser presentation deck with arrow-key navigation
 - Documentation for user journey and technical design
+
+## Live Links
+
+- Prototype: https://kshlgrg.github.io/supplier-network-prototype/
+- Presentation: https://kshlgrg.github.io/supplier-network-prototype/presentation.html
 
 ## Run Locally
 
