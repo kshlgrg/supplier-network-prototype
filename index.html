@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplier Helper — Simple Network Planner</title>
+  <meta name="description" content="A simple supplier planning tool that helps people add partners, see risks, compare choices, and choose a better buying plan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-mode">
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="10" cy="12" r="3" fill="currentColor" opacity="0.6"/>
+          <circle cx="22" cy="12" r="3" fill="currentColor" opacity="0.8"/>
+          <circle cx="16" cy="22" r="3" fill="currentColor"/>
+          <line x1="12" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+          <line x1="11" y1="14" x2="15" y2="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+          <line x1="21" y1="14" x2="17" y2="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Supplier Helper</span>
+        <span class="brand-sub">Simple planning</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-label">Start</span>
+      <button class="nav-item active" data-screen="dashboard" id="nav-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" data-screen="network" id="nav-network">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="7" y1="8" x2="11" y2="16"/><line x1="17" y1="8" x2="13" y2="16"/></svg>
+        <span>Map</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-label">Decide</span>
+      <button class="nav-item" data-screen="comparison" id="nav-comparison">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+        <span>Pick Best</span>
+      </button>
+      <button class="nav-item" data-screen="risk" id="nav-risk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="9" x2="12" y2="15"/><circle cx="12" cy="18" r="0.5" fill="currentColor"/></svg>
+        <span>Problems</span>
+      </button>
+      <button class="nav-item" data-screen="optimize" id="nav-optimize">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor" opacity="0.15"/><polyline points="12 7 12 12 16 14"/></svg>
+        <span>Best Plan</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-label">Your Info</span>
+      <button class="nav-item" data-screen="datacontrol" id="nav-datacontrol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12h6M12 9v6"/></svg>
+        <span>Add Info</span>
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme">
+        <span class="theme-toggle-icon" id="theme-toggle-icon">☀</span>
+        <span id="theme-toggle-label">Light mode</span>
+      </button>
+      <div class="user-badge">
+        <div class="user-avatar">KG</div>
+        <div class="user-info">
+          <span class="user-name">Kushal Garg</span>
+          <span class="user-role">Supplier Admin</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+
+    <!-- ===== LANDING PAGE ===== -->
+    <section id="screen-landing" class="screen landing-screen active">
+      <div class="landing-shell">
+        <header class="landing-topbar">
+          <div class="landing-brand">
+            <div class="brand-icon landing-brand-icon">
+              <svg viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="10" cy="12" r="3" fill="currentColor" opacity="0.6"/>
+                <circle cx="22" cy="12" r="3" fill="currentColor" opacity="0.8"/>
+                <circle cx="16" cy="22" r="3" fill="currentColor"/>
+                <line x1="12" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                <line x1="11" y1="14" x2="15" y2="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                <line x1="21" y1="14" x2="17" y2="20" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              </svg>
+            </div>
+            <div>
+              <span class="brand-name">Supplier Helper</span>
+              <span class="brand-sub">Simple planning</span>
+            </div>
+          </div>
+          <button class="btn-outline" id="btn-landing-demo" type="button">View Dashboard</button>
+        </header>
+
+        <div class="landing-grid">
+          <div class="landing-copy">
+            <span class="eyebrow">For small teams and first-time users</span>
+            <h1>Find safer suppliers without confusing spreadsheets.</h1>
+            <p>Start with one guided sign-up. Add supplier details. Then see who is risky, who is safer, and how much work to give each partner.</p>
+            <div class="landing-actions">
+              <button class="btn-primary btn-landing-primary" id="btn-landing-create" type="button">Create Workspace</button>
+              <button class="btn-outline" id="btn-landing-sample" type="button">Show Sample Plan</button>
+            </div>
+            <div class="landing-trust-row">
+              <span>One question at a time</span>
+              <span>No training needed</span>
+              <span>Prototype ready</span>
+            </div>
+          </div>
+
+          <div class="landing-preview-card">
+            <div class="preview-header">
+              <span class="live-badge"><span class="pulse"></span> Guided</span>
+              <span class="badge badge-green">Simple</span>
+            </div>
+            <div class="preview-question">
+              <span class="step-badge">Start</span>
+              <h2>Create your workspace</h2>
+              <p>What item or material is most important?</p>
+              <div class="preview-input">Critical components</div>
+            </div>
+            <div class="preview-result">
+              <div>
+                <span class="summary-label">Best next action</span>
+                <strong>Add 2 suppliers</strong>
+              </div>
+              <div>
+                <span class="summary-label">Main risk</span>
+                <strong>Too much dependence</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 1: DASHBOARD ===== -->
+    <section id="screen-dashboard" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Home</h1>
+          <p class="screen-subtitle">A simple demo: sign up, add details, then see the best plan.</p>
+        </div>
+        <div class="header-actions">
+          <span class="live-badge"><span class="pulse"></span> Live</span>
+          <button class="btn-outline" id="btn-demo-reset">Show New User Demo</button>
+          <button class="btn-outline" id="btn-refresh-dashboard">Check Again</button>
+        </div>
+      </header>
+
+      <div class="home-flow">
+        <div class="card signup-card" id="signup-card">
+          <div class="step-badge">Start</div>
+          <div class="walkthrough-copy">
+            <span class="eyebrow">Simple walkthrough</span>
+            <h2 id="walkthrough-title">Create your workspace</h2>
+            <p id="walkthrough-help">One question at a time. We collect only what is needed to give a useful plan.</p>
+          </div>
+          <form id="signup-form" class="signup-form walkthrough-form">
+            <div class="walkthrough-progress" id="walkthrough-progress"></div>
+            <label class="form-field walkthrough-field">
+              <span id="walkthrough-question">What is your name?</span>
+              <input type="text" name="walkthroughAnswer" id="walkthrough-answer" placeholder="Type here" required autocomplete="off">
+            </label>
+            <div class="walkthrough-chips" id="walkthrough-chips">
+              <!-- Populated by JS -->
+            </div>
+            <div class="walkthrough-actions">
+              <button class="btn-outline" type="button" id="walkthrough-back">Back</button>
+              <button class="btn-primary" type="submit" id="walkthrough-next">Next</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card checklist-card">
+          <div class="step-badge">Progress</div>
+          <div class="card-header">
+            <h3>What is left?</h3>
+            <span class="badge badge-amber" id="setup-progress">0 / 4 done</span>
+          </div>
+          <div class="journey-summary compact" id="journey-summary">
+            <!-- Populated by JS -->
+          </div>
+          <div class="setup-checklist" id="setup-checklist">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="card home-result-card">
+          <div class="step-badge">Result</div>
+          <div>
+            <span class="eyebrow">After setup</span>
+            <h2>Your simple answer appears here</h2>
+            <p id="home-result-copy">Once you add details, we show who is risky, who is safer, and how much work to give each supplier.</p>
+          </div>
+          <div class="home-result-actions">
+            <button class="btn-primary" data-screen="optimize" id="btn-home-best-plan">See Best Plan</button>
+            <button class="btn-outline" data-screen="risk" id="btn-home-problems">See Problems</button>
+            <button class="btn-outline" data-screen="comparison" id="btn-home-pick-best">Pick Best Supplier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-grid compact-home-metrics">
+        <div class="kpi-card" id="kpi-relationships">
+          <div class="kpi-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-rel-value">24</span>
+            <span class="kpi-label">People You Work With</span>
+          </div>
+          <span class="kpi-trend up">+3 this month</span>
+        </div>
+
+        <div class="kpi-card" id="kpi-dependency">
+          <div class="kpi-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="9" x2="12" y2="15"/><circle cx="12" cy="18" r="0.5" fill="currentColor"/></svg>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-dep-value">65%</span>
+            <span class="kpi-label">Too Much Dependence</span>
+          </div>
+          <span class="kpi-trend warn">Reliance on 2 buyers</span>
+        </div>
+
+        <div class="kpi-card" id="kpi-risk">
+          <div class="kpi-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-risk-value">Medium</span>
+            <span class="kpi-label">Problem Level</span>
+          </div>
+          <span class="kpi-trend warn">Review recommended</span>
+        </div>
+
+        <div class="kpi-card" id="kpi-score">
+          <div class="kpi-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-score-value">78</span>
+            <span class="kpi-label">Overall Health</span>
+          </div>
+          <span class="kpi-trend up">+5 vs last quarter</span>
+        </div>
+      </div>
+
+      <div class="dashboard-grid home-details collapsed" id="home-details">
+        <div class="card chart-card" id="card-relationship-trend">
+          <div class="card-header">
+            <h3>Health Over Time</h3>
+            <select class="mini-select" id="trend-period">
+              <option value="6m">6 Months</option>
+              <option value="1y">1 Year</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-trend"></canvas>
+          </div>
+        </div>
+
+        <div class="card chart-card" id="card-risk-distribution">
+          <div class="card-header">
+            <h3>Safe vs Risky Partners</h3>
+          </div>
+          <div class="chart-container doughnut-container">
+            <canvas id="chart-risk-dist"></canvas>
+          </div>
+        </div>
+
+        <div class="card" id="card-alerts">
+          <div class="card-header">
+            <h3>Things To Notice</h3>
+            <span class="badge badge-red">4 new</span>
+          </div>
+          <div class="alerts-list" id="alerts-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="card" id="card-mini-graph">
+          <div class="card-header">
+            <h3>Your Partner Map</h3>
+            <button class="btn-text" data-screen="network" id="btn-expand-graph">Open Map</button>
+          </div>
+          <div id="mini-graph-container" class="mini-graph"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 2: NETWORK VIEW ===== -->
+    <section id="screen-network" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Map</h1>
+          <p class="screen-subtitle">See who is connected to you. Click any circle to learn more.</p>
+        </div>
+        <div class="header-actions">
+          <div class="legend-row">
+            <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span> Looks Safe</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Watch</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Problem</span>
+            <span class="legend-item"><span class="legend-sq supplier"></span> Supplier</span>
+            <span class="legend-item"><span class="legend-sq buyer"></span> Buyer</span>
+          </div>
+        </div>
+      </header>
+      <div class="network-wrapper">
+        <div id="network-graph" class="graph-canvas"></div>
+        <!-- Detail Panel (slides in on node click) -->
+        <aside id="detail-panel" class="detail-panel hidden">
+          <button class="close-panel" id="close-detail">&times;</button>
+          <div id="detail-content">
+            <!-- Populated by JS -->
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 3: COMPARISON TOOL ===== -->
+    <section id="screen-comparison" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Pick Best</h1>
+          <p class="screen-subtitle">Choose a few suppliers. Move the sliders to say what matters most.</p>
+        </div>
+      </header>
+      <div class="plain-note">Simple rule: higher score means better choice for you.</div>
+
+      <div class="comparison-controls">
+        <div class="select-group">
+          <label>Choose suppliers to compare</label>
+          <div class="select-row">
+            <select id="compare-a" class="styled-select"><option value="">— Select —</option></select>
+            <span class="vs-badge">vs</span>
+            <select id="compare-b" class="styled-select"><option value="">— Select —</option></select>
+            <span class="vs-badge">vs</span>
+            <select id="compare-c" class="styled-select"><option value="">— Optional —</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="weight-sliders" id="weight-sliders">
+        <h3>What matters most?</h3>
+        <div class="slider-group">
+          <div class="slider-item">
+            <label>Lower price <span class="weight-val" id="w-price-val">25%</span></label>
+            <input type="range" min="0" max="100" value="25" id="w-price" class="styled-range">
+          </div>
+          <div class="slider-item">
+            <label>Does good work <span class="weight-val" id="w-reliability-val">30%</span></label>
+            <input type="range" min="0" max="100" value="30" id="w-reliability" class="styled-range">
+          </div>
+          <div class="slider-item">
+            <label>Delivers on time <span class="weight-val" id="w-delivery-val">25%</span></label>
+            <input type="range" min="0" max="100" value="25" id="w-delivery" class="styled-range">
+          </div>
+          <div class="slider-item">
+            <label>Feels safe <span class="weight-val" id="w-risk-val">20%</span></label>
+            <input type="range" min="0" max="100" value="20" id="w-risk" class="styled-range">
+          </div>
+        </div>
+      </div>
+
+      <div id="comparison-results" class="comparison-results">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="comparison-chart-area">
+        <div class="card chart-card">
+          <div class="card-header"><h3>Side-by-Side Score</h3></div>
+          <div class="chart-container radar-container">
+            <canvas id="chart-radar"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 4: RISK DASHBOARD ===== -->
+    <section id="screen-risk" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Problems</h1>
+          <p class="screen-subtitle">See where trouble may happen before it hurts your business.</p>
+        </div>
+      </header>
+      <div class="plain-note">Red means act soon. Yellow means watch. Green means okay for now.</div>
+
+      <div class="risk-top-grid">
+        <div class="card" id="card-dep-heatmap">
+          <div class="card-header"><h3>Where Trouble Is Building</h3></div>
+          <div id="heatmap-container" class="heatmap-area"></div>
+        </div>
+        <div class="card" id="card-risk-alerts">
+          <div class="card-header"><h3>Important Warnings</h3></div>
+          <div id="risk-alerts-list" class="risk-alerts-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="risk-bottom-grid">
+        <div class="card chart-card">
+          <div class="card-header"><h3>Problems Over Time</h3></div>
+          <div class="chart-container">
+            <canvas id="chart-risk-time"></canvas>
+          </div>
+        </div>
+        <div class="card" id="card-suggested-actions">
+          <div class="card-header"><h3>What To Do Next</h3></div>
+          <div id="suggested-actions" class="actions-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card monte-carlo-card" id="card-monte-carlo">
+        <div class="card-header">
+          <div>
+            <h3>What-If Test</h3>
+            <p class="card-subtitle">We quietly run many possible bad days and show what could happen.</p>
+          </div>
+          <button class="btn-primary" id="btn-run-simulation">Test My Plan</button>
+        </div>
+        <div class="simulation-controls">
+          <label class="slider-item">
+            <span>How far ahead? <strong id="sim-horizon-val">90 days</strong></span>
+            <input type="range" min="30" max="180" step="15" value="90" id="sim-horizon" class="styled-range">
+          </label>
+          <label class="slider-item">
+            <span>How many checks? <strong id="sim-iterations-val">3000</strong></span>
+            <input type="range" min="500" max="10000" step="500" value="3000" id="sim-iterations" class="styled-range">
+          </label>
+          <label class="slider-item">
+            <span>How much can demand change? <strong id="sim-volatility-val">18%</strong></span>
+            <input type="range" min="5" max="60" step="1" value="18" id="sim-volatility" class="styled-range">
+          </label>
+          <label class="slider-item">
+            <span>Backup days available <strong id="sim-buffer-val">14 days</strong></span>
+            <input type="range" min="3" max="45" step="1" value="14" id="sim-buffer" class="styled-range">
+          </label>
+        </div>
+        <div class="simulation-grid">
+          <div id="simulation-results" class="simulation-results">
+            <!-- Populated by JS -->
+          </div>
+          <div class="chart-container simulation-chart">
+            <canvas id="chart-simulation"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 5: OPTIMIZATION ===== -->
+    <section id="screen-optimize" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Best Plan</h1>
+          <p class="screen-subtitle">We suggest how much work to give each supplier.</p>
+        </div>
+      </header>
+      <div class="plain-note">Use this page when you ask: “Who should I buy more from, and who should I depend on less?”</div>
+
+      <div class="optimize-hero">
+        <div class="optimize-stat">
+          <span class="opt-label">Biggest supplier now</span>
+          <span class="opt-value danger" id="opt-current">70%</span>
+        </div>
+        <div class="optimize-arrow">
+          <svg viewBox="0 0 48 24" fill="none"><path d="M2 12h40M36 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="optimize-stat">
+          <span class="opt-label">Safer target</span>
+          <span class="opt-value safe" id="opt-target">40%</span>
+        </div>
+      </div>
+
+      <div id="optimization-cards" class="optimize-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="card optimizer-card">
+        <div class="card-header">
+          <div>
+            <h3>Simple Buying Plan</h3>
+            <p class="card-subtitle">Behind the scenes we check price, safety, capacity, speed, quality, and rules.</p>
+          </div>
+          <span class="badge badge-green" id="optimizer-status">Ready</span>
+        </div>
+        <div id="optimizer-summary" class="optimizer-summary">
+          <!-- Populated by JS -->
+        </div>
+        <div class="optimizer-table-wrap">
+          <table class="optimizer-table">
+            <thead>
+              <tr>
+                <th>Supplier</th>
+                <th>Now</th>
+                <th>Best Plan</th>
+                <th>Why</th>
+                <th>Limit</th>
+              </tr>
+            </thead>
+            <tbody id="optimizer-table-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 6: DATA CONTROL ===== -->
+    <section id="screen-datacontrol" class="screen">
+      <header class="screen-header">
+        <div>
+          <h1>Add Info</h1>
+          <p class="screen-subtitle">Add your business and supplier details here. The app does the hard work.</p>
+        </div>
+      </header>
+      <div class="plain-note">Do not worry about perfect answers. Use your best guess and improve it later.</div>
+
+      <div class="data-control-grid" id="data-control-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal-shell hidden" id="onboarding-modal">
+    <div class="modal-backdrop" id="onboarding-backdrop"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow">Advanced edit</span>
+          <h2>Answer a few simple questions</h2>
+          <p>If you do not know an answer, leave the suggested value. You can change it later.</p>
+        </div>
+        <button class="close-panel" id="close-onboarding">&times;</button>
+      </div>
+
+      <form id="onboarding-form" class="onboarding-form">
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Company name</span>
+            <input type="text" id="company-name" name="companyName" placeholder="Acme Components" required>
+          </label>
+          <label class="form-field">
+            <span>Your name</span>
+            <input type="text" id="user-name" name="userName" placeholder="Alex Morgan" required>
+          </label>
+          <label class="form-field">
+            <span>Your job</span>
+            <input type="text" id="user-role" name="userRole" placeholder="Supplier Operations Lead" required>
+          </label>
+          <label class="form-field">
+            <span>What kind of business?</span>
+            <input type="text" id="company-sector" name="sector" placeholder="Industrial electronics">
+          </label>
+          <label class="form-field">
+            <span>Main area</span>
+            <input type="text" id="company-region" name="region" placeholder="India">
+          </label>
+          <label class="form-field">
+            <span>What do you want help with?</span>
+            <select id="primary-goal" name="goal">
+              <option value="Reduce concentration risk">Reduce concentration risk</option>
+              <option value="Find backup suppliers faster">Find backup suppliers faster</option>
+              <option value="Improve buyer quality visibility">Improve buyer quality visibility</option>
+              <option value="Prepare for procurement reviews">Prepare for procurement reviews</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Important item or material</span>
+            <input type="text" id="critical-category" name="criticalCategory" placeholder="PCBs, resins, fasteners">
+          </label>
+          <label class="form-field">
+            <span>How often do you plan?</span>
+            <select id="planning-cycle" name="planningCycle">
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Money spent per year</span>
+            <input type="number" id="annual-spend" name="annualSpend" min="0" step="1000" placeholder="2500000">
+          </label>
+          <label class="form-field">
+            <span>Biggest trust concern</span>
+            <select id="compliance-focus" name="complianceFocus">
+              <option value="Quality and delivery SLAs">Quality and delivery SLAs</option>
+              <option value="Financial stability">Financial stability</option>
+              <option value="Cyber and data sharing">Cyber and data sharing</option>
+              <option value="ESG and responsible sourcing">ESG and responsible sourcing</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="choice-block">
+          <span class="choice-title">How should we start?</span>
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="setupMode" value="guided" checked>
+              <strong>Use example data</strong>
+              <span>Best if you just want to try it quickly.</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="setupMode" value="lean">
+              <strong>Start small</strong>
+              <span>Best if you want to add only real suppliers.</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="setupMode" value="expanded">
+              <strong>More examples</strong>
+              <span>Best if you want to test more features.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="btn-skip-onboarding">Do Later</button>
+          <button type="submit" class="btn-primary">Save and Start</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
