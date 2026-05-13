@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vypaar Saathi Design Process Documentation</title>
+  <meta name="description" content="Design process documentation for the Vypaar Saathi prototype, completed according to the learner template structure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./design-process-learner.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">VS</div>
+      <div>
+        <strong>Design Process Documentation</strong>
+        <span>Completed from the learner template for Vypaar Saathi</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="button" href="../index.html">Open Prototype</a>
+      <a class="button" href="../presentation.html">Open Presentation</a>
+      <button class="button primary" type="button" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </header>
+
+  <main class="document">
+    <section class="cover">
+      <img class="template-logo" src="./design-assets/vypaar-saathi-logo.png" alt="Vypaar Saathi template logo">
+      <div class="cover-copy">
+        <span class="eyebrow">Vypaar Saathi</span>
+        <h1>Design Process Documentation Template</h1>
+        <p class="lead">A template-aligned, research-style design-process document for a simple supplier network planner that helps small teams add partners, see dependency risk, compare choices, run scenario analysis, and choose a better supplier allocation plan.</p>
+        <div class="abstract-card">
+          <h2>Abstract</h2>
+          <p>This document records the complete design process followed for Vypaar Saathi, from domain discovery and user understanding to ideation, prototype development, usability reasoning, and final reflection. The core design challenge was to make supplier network optimization understandable for MSME and small procurement users who may not have specialist analytical tools, clean data systems, or time for complex dashboards.</p>
+          <p>The final concept uses progressive disclosure: the user begins with one guided setup path, enters only relevant business and supplier information, and then receives visible outputs such as dependency risk, comparison scores, simulation results, and a recommended allocation plan. The report connects every major design decision to user evidence, heuristic principles, feasibility limits, and prototype behavior.</p>
+        </div>
+        <p class="keywords"><strong>Keywords:</strong> supplier risk, MSME procurement, user journey, progressive disclosure, Monte Carlo simulation, decision support, network optimization, design heuristics.</p>
+      </div>
+      <div class="panel cover-visual">
+        <div class="browser-frame" aria-label="Vypaar Saathi mock dashboard visual">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-body">
+            <div class="mock-title"></div>
+            <div class="mock-grid">
+              <div class="mock-metric"><strong>1</strong><span>guided path</span></div>
+              <div class="mock-metric"><strong>6</strong><span>decision views</span></div>
+              <div class="mock-metric"><strong>3k</strong><span>simulations</span></div>
+            </div>
+            <div class="mock-bars">
+              <span style="height: 42%;"></span>
+              <span style="height: 68%;"></span>
+              <span style="height: 54%;"></span>
+              <span style="height: 92%;"></span>
+              <span style="height: 72%;"></span>
+              <span style="height: 84%;"></span>
+            </div>
+          </div>
+        </div>
+        <p class="caption" style="margin-top: 12px;">The design stages complex analytics behind a simple first-time user flow.</p>
+      </div>
+      <div class="cover-brief">
+        <div>
+          <h3>Problem Context</h3>
+          <p>Small procurement teams often hold supplier knowledge in informal conversations, spreadsheets, memory, and recent crisis experience. This makes risk visible only after a delay and turns allocation into a reactive judgement.</p>
+        </div>
+        <div>
+          <h3>Design Objective</h3>
+          <p>The objective is to create a simple guided experience that asks for the right data at the right time, then converts it into dependency visibility, comparison logic, simulation evidence, and a recommended action.</p>
+        </div>
+        <div>
+          <h3>Reader Guide</h3>
+          <p>The document should be read as evidence of process: discovery explains the user problem, ideation explains why this concept was selected, and prototyping explains how usability principles shaped the final screens.</p>
+        </div>
+      </div>
+      <div class="cover-summary">
+        <div class="summary-item"><strong>Research base</strong><span>Four semi-structured interviews across low, medium, high, and digitally mature procurement profiles.</span></div>
+        <div class="summary-item"><strong>Design method</strong><span>Empathy mapping, affinity mapping, mind mapping, SCAMPER, feasibility-viability-desirability evaluation, and prototype testing.</span></div>
+        <div class="summary-item"><strong>Prototype output</strong><span>A deployable HTML/CSS/JavaScript prototype with guided sign-up, data entry, network view, risk simulation, and optimized plan.</span></div>
+        <div class="summary-item"><strong>Evaluation lens</strong><span>Nielsen-style usability heuristics, cognitive-load reduction, accessibility of language, recoverability, and visible feedback.</span></div>
+      </div>
+    </section>
+
+    <section class="phase" id="project-details">
+      <div class="section-head">
+        <span class="eyebrow">Project Details</span>
+        <h2>Template summary table</h2>
+      </div>
+      <table class="project-table template-project-table" aria-label="Project details table following the learner template">
+        <colgroup>
+          <col class="template-label-col">
+          <col><col><col><col><col>
+        </colgroup>
+        <tr>
+          <th>Project Title</th>
+          <td colspan="5">Vypaar Saathi: Simple Supplier Network Planner</td>
+        </tr>
+        <tr>
+          <th>Team Members<br>Names</th>
+          <td>Ananya Jha<br><span>2504310006</span></td>
+          <td>Kushal Garg<br><span>2501010241</span></td>
+          <td>Ojus Sood<br><span>2501010313</span></td>
+          <td>Madhav Gupta<br><span>2501010252</span></td>
+          <td>Tushar Khemka<br><span>2501010482</span></td>
+        </tr>
+        <tr>
+          <th>% Contribution of<br>Each Member</th>
+          <td>20%<br><span>User research and empathy framing</span></td>
+          <td>20%<br><span>Prototype direction and product integration</span></td>
+          <td>20%<br><span>Ideation, affinity mapping, and concept selection</span></td>
+          <td>20%<br><span>Technical feasibility and testing criteria</span></td>
+          <td>20%<br><span>Visual documentation and final review</span></td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td colspan="5">May 13, 2026</td>
+        </tr>
+        <tr>
+          <th>Submitted To</th>
+          <td colspan="5">Reviewer / Instructor / Project Evaluator</td>
+        </tr>
+        <tr>
+          <th>Submitted By</th>
+          <td colspan="5">Ananya Jha, Kushal Garg, Ojus Sood, Madhav Gupta, and Tushar Khemka</td>
+        </tr>
+      </table>
+      <div class="report-note" style="margin-top: 16px;">
+        <h3>Document Orientation</h3>
+        <p>The report is written as a design-process submission rather than a product brochure. Each phase explains what was observed, what was inferred, how alternatives were compared, and why the chosen interface decisions are suitable for first-time and low-confidence digital users. Visual evidence is included where it supports reasoning, while the written sections make the design logic explicit enough for evaluation.</p>
+      </div>
+    </section>
+
+    <section class="phase" id="phase-1">
+      <div class="section-head">
+        <span class="eyebrow">Phase 1: Discovery & Problem Definition</span>
+        <h2>Understanding the domain, user, and design problem.</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="detail-card">
+          <span class="tag">1. Domain & Focus</span>
+          <h3>Broad Industry / Category</h3>
+          <p>Technology and software for supply-chain decision support, procurement operations, supplier risk management, MSME continuity planning, and data-driven supplier allocation.</p>
+          <h3 style="margin-top: 18px;">Specific Focus Area</h3>
+          <p>Helping MSME and small procurement teams understand supplier dependency, convert fragmented supplier knowledge into usable data, and choose safer, explainable allocation decisions.</p>
+        </div>
+        <div class="detail-card">
+          <span class="tag red">2. Problem Definition</span>
+          <h3>Problem Statement</h3>
+          <p>Small procurement and operations teams often rely on scattered spreadsheets, WhatsApp updates, memory, and informal judgement to manage suppliers. They may know a partner feels risky, but they cannot easily connect dependency, lead time, recovery, reliability, cost, capacity, and compliance into one decision model.</p>
+          <h3 style="margin-top: 18px;">Why This Matters</h3>
+          <p>When one supplier carries too much work, a disruption can create stockouts, late delivery, urgent switching cost, customer dissatisfaction, and financial loss. A simple planning tool helps teams act before risk becomes damage by making dependency visible, comparable, and actionable.</p>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 16px;">
+        <div class="phase-card">
+          <span class="tag blue">3. Research Summary</span>
+          <h3>Primary Research</h3>
+          <p>The team conducted four semi-structured interviews across low, medium, high, and digitally mature supplier/procurement profiles. The interviews explored how users track suppliers, how they notice risk, how they compare partners, and what makes a recommendation trustworthy.</p>
+        </div>
+        <div class="phase-card">
+          <span class="tag amber">Secondary Research</span>
+          <h3>Evidence Base</h3>
+          <p>Secondary research from supply-chain risk and vendor-onboarding guidance emphasized supplier identification, assessment, monitoring, compliance, continuity planning, and repeatable review cycles. This supported a design direction centered on visibility, decision support, and explainable controls.</p>
+        </div>
+        <div class="phase-card">
+          <span class="tag">Active Folder Links</span>
+          <h3>Project Evidence</h3>
+          <p><a href="./user-journey.md">User Journey</a>, <a href="./technical-report.md">Technical Report</a>, <a href="../presentation.html">Presentation</a>, <a href="../prototype-screenshots/01-landing.png">Prototype Screenshots</a>, and <a href="../index.html">Live Prototype</a>.</p>
+        </div>
+      </div>
+
+      <div class="report-note" style="margin-top: 16px;">
+        <h3>Research Interpretation</h3>
+        <p>The interviews suggested that supplier decisions are rarely made from one clean source of truth. Users often remember supplier behavior informally, check recent communication threads, compare delivery history from memory, and then make an allocation decision under time pressure. This creates a design opportunity: the product should not ask users to become analysts. Instead, it should translate normal business knowledge into a structured decision model and immediately show how each answer affects risk, comparison, or allocation.</p>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <h3>Interview Profile Matrix</h3>
+        <table class="research-table">
+          <tr><th>Profile</th><th>Representative context</th><th>Observed behavior</th><th>Design implication</th></tr>
+          <tr><td>Low digital maturity</td><td>Small operator using calls, memory, and WhatsApp updates.</td><td>Risk is noticed only after delivery failure or stock pressure.</td><td>The tool must use simple language and avoid heavy setup.</td></tr>
+          <tr><td>Medium digital maturity</td><td>MSME team using spreadsheets, periodic supplier calls, and informal review.</td><td>Data exists, but it is stale and not linked to action.</td><td>The product must connect every input to visible outputs.</td></tr>
+          <tr><td>High digital maturity</td><td>Structured procurement user with basic dashboards or ERP exports.</td><td>Comparison is possible, but allocation decisions still require manual judgement.</td><td>The product must explain tradeoffs and constraints.</td></tr>
+          <tr><td>Digitally advanced profile</td><td>User comfortable with dashboards and scenario planning.</td><td>They trust analytics only when assumptions are visible.</td><td>Monte Carlo and optimization must show inputs, outputs, and limits clearly.</td></tr>
+        </table>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <h3>Key Insights</h3>
+        <ul class="checklist">
+          <li>One setup route is clearer than multiple routes leading to the same page.</li>
+          <li>Users need plain-language labels before analytical terminology appears.</li>
+          <li>Every data field should create a visible downstream output.</li>
+          <li>Risk feels actionable when paired with comparison and allocation guidance.</li>
+          <li>Prototype evidence should include screenshots, documentation, and live links.</li>
+        </ul>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="detail-card">
+          <span class="tag blue">Data Required</span>
+          <h3>Inputs needed for real optimization</h3>
+          <p>A useful supplier network tool needs company context, product or material category, supplier names, buyer/customer dependency, lead time, reliability, cost, capacity, minimum order constraints, delivery variability, disruption probability, recovery time, payment terms, compliance status, and preferred risk tolerance. These inputs are intentionally collected over time so the user is not overloaded at sign-up.</p>
+        </div>
+        <div class="detail-card">
+          <span class="tag amber">Timing Logic</span>
+          <h3>When data should be requested</h3>
+          <p>Only basic business information belongs in the first walkthrough. Supplier-specific details should appear after the workspace exists, comparison weights should appear when the user enters Pick Best, and uncertainty fields should appear before simulation. This sequencing follows the principle that users answer better when the question is tied to an immediate visible purpose.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="persona-card">
+          <span class="tag violet">4. User Persona</span>
+          <h3>The Overloaded Procurement Operator</h3>
+          <p>A business owner, operations manager, or procurement lead who knows suppliers from experience but does not have analyst time or enterprise software access. They need a calm tool that shows who is risky, which partner is better, and how to distribute work more safely.</p>
+        </div>
+        <div class="pain-gain">
+          <div class="persona-card">
+            <span class="tag red">Pain</span>
+            <ul>
+              <li>Supplier data is fragmented across spreadsheets and memory.</li>
+              <li>Risk is hard to explain to others.</li>
+              <li>Backup decisions are often reactive.</li>
+              <li>Advanced tools feel too complex.</li>
+            </ul>
+          </div>
+          <div class="persona-card">
+            <span class="tag">Gain</span>
+            <ul>
+              <li>Clear view of dependency and risk.</li>
+              <li>Simple comparison of partner options.</li>
+              <li>Scenario-based confidence before decisions.</li>
+              <li>Explainable allocation recommendation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <h3>Empathy Map Snapshot</h3>
+        <div class="empathy-map">
+          <div class="empathy-cell"><span class="tag blue">Think</span><p>"Which supplier could hurt us if something goes wrong?"</p></div>
+          <div class="empathy-cell"><span class="tag red">Feel</span><p>Concerned about disruptions, but overloaded by long forms and complex dashboards.</p></div>
+          <div class="empathy-cell"><span class="tag amber">See</span><p>Spreadsheets, informal notes, supplier calls, and disconnected risk signals.</p></div>
+          <div class="empathy-cell"><span class="tag">Say</span><p>"Just tell me who is risky and what I should do next."</p></div>
+        </div>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <h3>Research Evidence: Affinity Map</h3>
+        <div class="evidence-grid">
+          <div class="evidence-card">
+            <img src="./design-assets/03-concept-selection.jpeg" alt="Affinity map evidence showing over-dependence, stale data, gut feel, and want clarity themes">
+            <div class="evidence-body">
+              <h4>Affinity map from interview synthesis</h4>
+              <p>Interview notes were grouped into four recurring themes: over-dependence, stale data, gut-feel decision making, and desire for one clear next action.</p>
+            </div>
+          </div>
+          <div class="evidence-card">
+            <img src="./design-assets/02-empathy-map.jpeg" alt="Mind map evidence showing visibility, comparison, risk, action, and constraints">
+            <div class="evidence-body">
+              <h4>Problem mind map</h4>
+              <p>The map reframed the core problem as MSMEs being unable to see or act on supplier risk because visibility, comparison, risk, and action are disconnected.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="phase" id="phase-2">
+      <div class="section-head">
+        <span class="eyebrow">Phase 2: Ideation & Selection</span>
+        <h2>Reframing the challenge into a clear product direction.</h2>
+      </div>
+
+      <div class="detail-card">
+        <span class="tag blue">5. Problem Reframing</span>
+        <h3>How Might We Statement</h3>
+        <p class="lead">How might we help small procurement teams see supplier dependency and choose safer allocations without analyst-level tools?</p>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="visual-card">
+          <span class="tag amber">6. Ideation & Exploration</span>
+          <h3>Brainstorm / Mind Map Snapshot</h3>
+          <div class="evidence-card">
+            <img src="./design-assets/01-brainstorm.jpeg" alt="Brainstorm board with concept options including guided web tool selected">
+            <div class="evidence-body">
+              <p>The team compared multiple formats, including spreadsheet templates, printable scorecards, WhatsApp trackers, ERP plugins, mobile-only apps, dashboards, AI advisors, rating marketplaces, and government data integrations. The guided web tool was selected because it balanced feasibility, desirability, and presentation value.</p>
+            </div>
+          </div>
+        </div>
+        <div class="visual-card">
+          <span class="tag blue">SCAMPER Model</span>
+          <h3>Structured concept refinement</h3>
+          <div class="evidence-card">
+            <img src="./design-assets/04-affinity-map.jpeg" alt="SCAMPER model showing substitute, combine, adapt, modify, put to other use, eliminate, and reverse">
+            <div class="evidence-body">
+              <p>SCAMPER helped refine the concept: substitute spreadsheets with a guided workspace, combine risk scoring and allocation, adapt weighted-scoring logic, modify labels into plain language, eliminate setup friction, and reverse the workflow so the tool recommends an action.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <span class="tag violet">7. Idea Evaluation</span>
+        <table class="evaluation-table">
+          <tr>
+            <th>Concept</th>
+            <th>Feasibility</th>
+            <th>Viability</th>
+            <th>Desirability</th>
+            <th>Decision</th>
+          </tr>
+          <tr>
+            <td>Spreadsheet dashboard</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Low-Medium</td>
+            <td>Rejected because it still feels manual and fragmented.</td>
+          </tr>
+          <tr>
+            <td>Enterprise procurement suite</td>
+            <td>Low</td>
+            <td>Medium</td>
+            <td>Low for first-time users</td>
+            <td>Rejected because it is too heavy for the project scope.</td>
+          </tr>
+          <tr>
+            <td>Guided decision tool</td>
+            <td>High</td>
+            <td>High</td>
+            <td>High</td>
+            <td>Selected because it balances simple onboarding with meaningful analytics.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="detail-card" style="margin-top: 16px;">
+        <h3>Selected Idea & Reason</h3>
+        <p>Vypaar Saathi was selected because it can demonstrate the full decision journey without overwhelming the user. It starts with a guided workspace setup, then turns supplier data into dashboards, network maps, comparisons, Monte Carlo scenarios, and a practical allocation recommendation. Compared with static scorecards or spreadsheets, it is more desirable because it provides immediate feedback. Compared with ERP-style solutions, it is more feasible for a prototype and easier for first-time users to understand.</p>
+      </div>
+
+      <div class="report-note" style="margin-top: 16px;">
+        <h3>Rationale for the Selected Direction</h3>
+        <p>The selected concept is not simply a dashboard. It is a guided decision environment. This distinction matters because the target user may understand their business deeply but may not express that knowledge in analytical terms. The design therefore converts everyday concepts such as “late supplier,” “main supplier,” “backup supplier,” “cost pressure,” and “urgent order” into computable fields. The prototype can then demonstrate professional analytics while still feeling usable to a non-technical user.</p>
+      </div>
+    </section>
+
+    <section class="phase" id="phase-3">
+      <div class="section-head">
+        <span class="eyebrow">Phase 3: Prototyping & Testing</span>
+        <h2>Building the active prototype and checking whether the flow works.</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="detail-card">
+          <span class="tag">8. Final Concept</span>
+          <h3>Concept Name</h3>
+          <p>Vypaar Saathi</p>
+          <h3 style="margin-top: 18px;">Key Features</h3>
+          <ul>
+            <li>Guided workspace creation with one question at a time.</li>
+            <li>Supplier and buyer data entry with operational fields.</li>
+            <li>Network map for supplier and buyer relationships.</li>
+            <li>Comparison tool with adjustable decision weights.</li>
+            <li>Monte Carlo simulation for uncertainty and risk exposure.</li>
+            <li>Best Plan optimizer with allocation reasons and constraints.</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <span class="tag blue">10. Prototype Development</span>
+          <h3>Tools / Materials Used</h3>
+          <p>HTML, CSS, vanilla JavaScript, D3.js, Chart.js, localStorage, Playwright screenshots, GitHub Pages, visual HTML documentation, and printable PDF styling.</p>
+          <h3 style="margin-top: 18px;">Design Principles Applied</h3>
+          <p>Progressive disclosure, recognition over recall, visibility of system status, user control, error prevention, immediate feedback, explainability, and recoverability.</p>
+        </div>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <span class="tag violet">Design Heuristics Applied</span>
+        <h3>Principles of design translated into interface decisions</h3>
+        <div class="principle-list">
+          <div class="principle-row"><strong>Visibility of system status</strong><span>Progress dots, checklist completion, live badges, KPIs, simulation outputs, and optimizer metrics keep users aware of state.</span></div>
+          <div class="principle-row"><strong>Match with real world</strong><span>Navigation labels use familiar words such as Home, Map, Problems, Pick Best, Best Plan, and Add Info.</span></div>
+          <div class="principle-row"><strong>User control and freedom</strong><span>Users can reset the demo, edit profile data, add partners, adjust comparison weights, and change visibility preferences.</span></div>
+          <div class="principle-row"><strong>Recognition over recall</strong><span>Suggested answers, visible checklists, plain labels, and summaries reduce memory load.</span></div>
+          <div class="principle-row"><strong>Error prevention</strong><span>Forms use defaults, bounded numbers, simple choices, and one-question sign-up to reduce input mistakes.</span></div>
+          <div class="principle-row"><strong>Aesthetic and minimalist design</strong><span>The interface prioritizes decision surfaces over decoration; complexity is staged, not hidden permanently.</span></div>
+          <div class="principle-row"><strong>Help and recoverability</strong><span>Reset, edit, and Add Info paths allow the user to correct or restart without being trapped.</span></div>
+        </div>
+      </div>
+
+      <div class="report-note" style="margin-top: 16px;">
+        <h3>Prototype Architecture in Plain Terms</h3>
+        <p>The prototype stores the user's workspace data locally in the browser, then reuses the same data across multiple decision views. The dashboard summarizes readiness and risk, the map explains relationships, Pick Best compares suppliers through weighted criteria, Risk + Simulation shows uncertainty through repeated scenario trials, and Best Plan converts the model into an allocation recommendation. This makes the prototype feel continuous: the user does not enter data for decoration, but for a visible decision outcome.</p>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <span class="tag amber">9. User Journey</span>
+        <h3>How to use the prototype from beginning to end</h3>
+        <div class="journey-flow">
+          <div class="flow-step"><span class="tag">1</span><h4>Landing</h4><p>Open the app and choose Create Workspace.</p></div>
+          <div class="flow-step"><span class="tag blue">2</span><h4>Sign up</h4><p>Answer one guided question at a time.</p></div>
+          <div class="flow-step"><span class="tag amber">3</span><h4>Add info</h4><p>Add suppliers, buyers, weights, and risk fields.</p></div>
+          <div class="flow-step"><span class="tag red">4</span><h4>Analyze</h4><p>Review dashboard, map, comparison, and risks.</p></div>
+          <div class="flow-step"><span class="tag violet">5</span><h4>Simulate</h4><p>Run Monte Carlo scenarios to see uncertainty.</p></div>
+          <div class="flow-step"><span class="tag">6</span><h4>Optimize</h4><p>Use Best Plan to choose better allocation.</p></div>
+        </div>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <span class="tag red">11. Testing & Iteration</span>
+        <table class="testing-table">
+          <tr><th>Testing Area</th><th>What Worked</th><th>Improvements Needed</th></tr>
+          <tr><td>New-user setup</td><td>One guided sign-up path reduced confusion.</td><td>Run real usability tests with target procurement users.</td></tr>
+          <tr><td>Data entry</td><td>Partner input updates many downstream screens.</td><td>Add CSV/XLSX import for real supplier master data.</td></tr>
+          <tr><td>Analytics</td><td>Simulation and optimization make the project feel professional.</td><td>Calibrate models with historical delivery and disruption data.</td></tr>
+          <tr><td>Documentation</td><td>Presentation, design docs, and screenshots support evaluation.</td><td>Add final user quotes after live testing.</td></tr>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="detail-card">
+          <span class="tag">Model Behavior</span>
+          <h3>How optimization is represented</h3>
+          <p>The prototype presents optimization as a constrained recommendation rather than a mysterious black box. Supplier options are compared using cost, lead time, reliability, capacity, dependency, and disruption assumptions. Simulation results communicate uncertainty, while the Best Plan view explains why a suggested allocation is safer or more balanced.</p>
+        </div>
+        <div class="detail-card">
+          <span class="tag blue">Design Safeguard</span>
+          <h3>Why the tool explains itself</h3>
+          <p>Users are unlikely to trust automated recommendations if the reasoning is invisible. Therefore, each analytical screen includes visible assumptions, labels, and plain-language reasons. This supports trust calibration: users can accept the recommendation, adjust inputs, or challenge the model without feeling trapped by it.</p>
+        </div>
+      </div>
+
+      <div class="visual-card" style="margin-top: 16px;">
+        <h3>Iteration Notes from User Understanding</h3>
+        <p class="research-note">The most important design iteration was simplifying the first-time path. Early versions had two setup routes that moved toward the same data page. Based on user-understanding concerns about cognitive load, the final design uses one large sign-up walkthrough, then sends users to Add Info for supplier details. This follows the design principle that one user goal should have one obvious route.</p>
+      </div>
+
+      <div class="prototype-link" style="margin-top: 16px;">
+        <div>
+          <span class="tag blue">12. Final Prototype</span>
+          <h3>Active Link to the final prototype</h3>
+          <p><a href="https://kshlgrg.github.io/supplier-network-prototype/">https://kshlgrg.github.io/supplier-network-prototype/</a></p>
+        </div>
+        <a class="button primary" href="https://kshlgrg.github.io/supplier-network-prototype/">Open Live Prototype</a>
+      </div>
+
+      <div class="visual-card prototype-snapshots" style="margin-top: 16px;">
+        <h3>Snapshots for complete prototype</h3>
+        <p class="snapshot-intro">The following screenshots document the complete prototype journey. They are included as evaluation evidence, not decoration: each screen shows how the product reduces cognitive load, connects user input to visible output, and preserves a simple route through increasingly advanced supplier-network decisions.</p>
+        <div class="screenshots">
+          <div class="snapshot-card"><img src="../prototype-screenshots/01-landing.png" alt="Vypaar Saathi landing page"><h4>Landing Page</h4><p>The landing page presents one dominant action: create the workspace. This prevents a first-time user from choosing between multiple similar entry routes and establishes the prototype as a guided helper rather than a complex analytics dashboard.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/02-guided-signup-home.png" alt="Guided sign-up home"><h4>Guided Sign-up</h4><p>The walkthrough asks one question at a time, uses plain language, and shows progress. This follows recognition-over-recall and error-prevention principles because the user does not need to understand optimization before beginning.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/03-dashboard-ready.png" alt="Dashboard ready screen"><h4>Dashboard Ready</h4><p>The dashboard confirms that the workspace is ready and turns setup data into visible summaries. KPIs, readiness cues, and next actions make the system status visible and reassure the user that their entered data has value.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/04-network-map.png" alt="Network map"><h4>Network Map</h4><p>The network map translates supplier and buyer relationships into a visual structure. It helps users see dependency, concentration, and exposure patterns that are difficult to understand from a spreadsheet alone.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/05-add-info-data-control.png" alt="Add Info data control screen"><h4>Add Info</h4><p>The Add Info area separates profile details, supplier data, sharing controls, and correction options. This keeps data entry purposeful because each field supports later comparison, simulation, or allocation outputs.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/06-pick-best-comparison.png" alt="Pick Best comparison screen"><h4>Pick Best</h4><p>Pick Best exposes the tradeoff logic behind supplier selection. Adjustable weights allow users to compare cost, reliability, lead time, and other factors without losing control over what matters most to their business.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/07-risk-and-simulation.png" alt="Risk and simulation screen"><h4>Risk + Simulation</h4><p>The simulation screen demonstrates uncertainty rather than pretending the answer is fixed. Monte Carlo-style outputs help communicate best, likely, and risky outcomes in a way that supports planning conversations.</p></div>
+          <div class="snapshot-card"><img src="../prototype-screenshots/08-best-plan-optimization.png" alt="Best plan optimization"><h4>Best Plan</h4><p>The Best Plan view converts analysis into action by recommending an allocation and explaining the reason. This final step is important because users need a decision, not only charts, after entering supplier data.</p></div>
+        </div>
+        <div class="report-note snapshot-summary" style="margin-top: 16px;">
+          <h3>Prototype Evidence Summary</h3>
+          <p>Taken together, the screenshots demonstrate a complete end-to-end journey: entry, guided setup, dashboard readiness, network visibility, data correction, weighted comparison, uncertainty simulation, and final optimization. The important design decision is continuity. A user should feel that every screen belongs to the same task and that the system is moving them toward a decision. This is why the prototype avoids separate disconnected tools and instead presents supplier planning as one guided workflow.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="phase" id="phase-4">
+      <div class="section-head">
+        <span class="eyebrow">Phase 4: Final Reflection</span>
+        <h2>Conclusion, learning, impact, and next steps.</h2>
+      </div>
+
+      <div class="reflection-grid">
+        <div class="reflection-card">
+          <span class="tag">13. Conclusion & Learnings</span>
+          <p>The project showed that a complex topic like supplier network optimization can become understandable when the experience is staged carefully. The biggest learning was that simplicity does not mean removing capability. It means asking for the right data at the right time, then showing a useful output immediately. The final prototype connects onboarding, supplier data, risk visibility, comparison, simulation, and allocation into one coherent journey.</p>
+        </div>
+        <div class="reflection-card">
+          <span class="tag blue">13. Evidence of Impact</span>
+          <ul>
+            <li>One setup route replaced duplicated onboarding paths.</li>
+            <li>Eight prototype screenshots document the full user journey.</li>
+            <li>GitHub Pages deployment makes the prototype available to anyone.</li>
+            <li>Design, technical, presentation, and template-based documentation are complete.</li>
+            <li>Every key input changes at least one downstream view.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="report-note" style="margin-top: 16px;">
+        <h3>Future Scope</h3>
+        <p>The next version should support spreadsheet import, supplier master-data templates, historical delivery uploads, user-role permissions, alerts for dependency thresholds, and exportable recommendation reports. The optimization model can also be calibrated with real delivery variance, disruption frequency, supplier capacity bands, and category-specific constraints. These additions would move the prototype from a strong demonstration artifact toward a practical decision-support tool for small teams.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Vypaar Saathi design-process document completed according to the learner template structure. Related files: prototype, presentation, technical report, user journey, and screenshots.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,6 +1,6 @@
-// app.js - Main Application Logic for OWSN Decision Intelligence Platform
+// app.js - Main Application Logic for Vypaar Saathi Decision Intelligence Platform
 
-const STORAGE_KEY = 'owsn-state-v2';
+const STORAGE_KEY = 'vypaar-saathi-state-v2';
 
 let appState = null;
 let activeScreen = 'landing';
@@ -113,11 +113,11 @@ function getInitialProfile() {
 }
 
 function buildTemplate(mode = 'guided', profile = getInitialProfile()) {
-  let nodes = deepClone(window.OWSN_DATA.nodes);
-  let links = deepClone(window.OWSN_DATA.links);
-  let notifications = deepClone(window.OWSN_DATA.notifications);
-  const recommendations = deepClone(window.OWSN_DATA.recommendations);
-  const privacySettings = deepClone(window.OWSN_DATA.privacySettings);
+  let nodes = deepClone(window.VYPAAR_SAATHI_DATA.nodes);
+  let links = deepClone(window.VYPAAR_SAATHI_DATA.links);
+  let notifications = deepClone(window.VYPAAR_SAATHI_DATA.notifications);
+  const recommendations = deepClone(window.VYPAAR_SAATHI_DATA.recommendations);
+  const privacySettings = deepClone(window.VYPAAR_SAATHI_DATA.privacySettings);
 
   const meNode = nodes.find(node => node.id === 'me');
   if (meNode) {

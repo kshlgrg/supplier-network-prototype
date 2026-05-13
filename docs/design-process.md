@@ -1,8 +1,8 @@
-# Design Process Documentation: Supplier Helper Prototype
+# Design Process Documentation: Vypaar Saathi Prototype
 
 ## 1. Design Goal
 
-Supplier Helper was designed to make supplier network optimization understandable to a normal business user. The goal was not to remove analytical depth. The goal was to hide complexity until the moment it becomes useful.
+Vypaar Saathi was designed to make supplier network optimization understandable to a normal business user. The goal was not to remove analytical depth. The goal was to hide complexity until the moment it becomes useful.
 
 The final experience should let a first-time user:
 

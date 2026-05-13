@@ -1,4 +1,4 @@
-// data.js - Simulated Backend Data for OWSN Prototype
+// data.js - Simulated Backend Data for Vypaar Saathi Prototype
 
 // 1. Core Nodes (Suppliers & Buyers)
 const nodes = [
@@ -109,7 +109,7 @@ nodes.forEach(node => {
 });
 
 // Exporting global window object so app.js can access
-window.OWSN_DATA = {
+window.VYPAAR_SAATHI_DATA = {
   nodes,
   links,
   notifications,

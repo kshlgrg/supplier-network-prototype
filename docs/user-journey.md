@@ -1,8 +1,8 @@
-# Open Weighted Supplier Network User Journey
+# Vypaar Saathi User Journey
 
 ## Product Intent
 
-Open Weighted Supplier Network is a decision-intelligence prototype for suppliers and procurement teams who need to understand dependency, compare partners, and reduce disruption risk. The prototype should feel useful to a normal operator on day one, not only to an analyst.
+Vypaar Saathi is a decision-intelligence prototype for suppliers and procurement teams who need to understand dependency, compare partners, and reduce disruption risk. The prototype should feel useful to a normal operator on day one, not only to an analyst.
 
 The platform should answer four practical questions:
 

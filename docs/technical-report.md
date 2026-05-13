@@ -1,8 +1,8 @@
-# Technical Report: Open Weighted Supplier Network
+# Technical Report: Vypaar Saathi
 
 ## 1. System Overview
 
-Open Weighted Supplier Network is a browser-based decision-intelligence prototype for supplier and buyer network optimization. It is implemented as a static single-page application using HTML, CSS, vanilla JavaScript, D3.js, Chart.js, and browser `localStorage`.
+Vypaar Saathi is a browser-based decision-intelligence prototype for supplier and buyer network optimization. It is implemented as a static single-page application using HTML, CSS, vanilla JavaScript, D3.js, Chart.js, and browser `localStorage`.
 
 The application has no backend yet. All default data is loaded from `data.js`, transformed into runtime application state in `app.js`, and persisted locally in the user's browser. This makes the prototype easy to test while still showing the product logic needed for a production-grade system.
 
@@ -97,7 +97,7 @@ These values are not decorative. They are used to personalize dashboards, checkl
 - `nextPartnerId`
 - `lastRefreshAt`
 
-State is loaded through `loadState()`, written through `saveState()`, and stored in `localStorage` under `owsn-state-v2`.
+State is loaded through `loadState()`, written through `saveState()`, and stored in `localStorage` under `vypaar-saathi-state-v2`.
 
 The app also normalizes older saved states through `normalizeNodeData()`. This prevents previously saved browser data from breaking after new optimizer fields are introduced.
 

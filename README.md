@@ -1,6 +1,6 @@
-# Supplier Helper Prototype
+# Vypaar Saathi Prototype
 
-A lightweight prototype for supplier network planning, onboarding, risk review, supplier comparison, and allocation optimization.
+Vypaar Saathi is a lightweight prototype for supplier network planning, onboarding, risk review, supplier comparison, and allocation optimization.
 
 ## What It Includes
 
@@ -10,7 +10,8 @@ A lightweight prototype for supplier network planning, onboarding, risk review, 
 - Risk and network overview
 - Optimization and comparison views
 - Browser presentation deck with arrow-key navigation
-- Documentation for user journey and technical design
+- Visual design-process documentation and printable learner-template PDF
+- Prototype screenshots for evaluation and presentation use
 
 ## Live Links
 
@@ -18,6 +19,12 @@ A lightweight prototype for supplier network planning, onboarding, risk review, 
 - Presentation: https://kshlgrg.github.io/supplier-network-prototype/presentation.html
 - Visual design process: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.html
 - Design process PDF: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.pdf
+- Learner-template design process: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process-learner.html
+- Learner-template design process PDF: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process-learner.pdf
+
+## Documentation Approach
+
+The project documentation follows a design-process format: discovery, problem definition, research synthesis, persona and empathy work, ideation, concept selection, prototyping, testing, and final reflection. The learner-template HTML/PDF uses a research-paper inspired visual treatment with red section headings, formal tables, evidence images, and prototype screenshots.
 
 ## Run Locally
 
@@ -40,3 +47,8 @@ Then open `http://127.0.0.1:3000/`.
 - `docs/design-process.md` - design process, usability principles, and validation checklist
 - `docs/design-process.html` - visual and printable version of the design process documentation
 - `docs/design-process.pdf` - exported PDF version of the visual design process documentation
+- `docs/design-process-learner.html` - design process document following the provided learner DOCX template
+- `docs/design-process-learner.css` - CSS for the learner-template design process document
+- `docs/design-process-learner.pdf` - printable PDF generated from the learner-template HTML document
+- `docs/design-assets/` - brainstorm, mind map, affinity map, and SCAMPER evidence images
+- `prototype-screenshots/` - captured prototype screens used in documentation and presentation
