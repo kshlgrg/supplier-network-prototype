@@ -9,14 +9,12 @@ Vypaar Saathi is a lightweight prototype for supplier network planning, onboardi
 - Supplier and buyer data entry
 - Risk and network overview
 - Optimization and comparison views
-- Browser presentation deck with arrow-key navigation
 - Visual design-process documentation and printable learner-template PDF
-- Prototype screenshots for evaluation and presentation use
+- Prototype screenshots for evaluation and documentation use
 
 ## Live Links
 
 - Prototype: https://kshlgrg.github.io/supplier-network-prototype/
-- Presentation: https://kshlgrg.github.io/supplier-network-prototype/presentation.html
 - Visual design process: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.html
 - Design process PDF: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process.pdf
 - Learner-template design process: https://kshlgrg.github.io/supplier-network-prototype/docs/design-process-learner.html
@@ -51,4 +49,4 @@ Then open `http://127.0.0.1:3000/`.
 - `docs/design-process-learner.css` - CSS for the learner-template design process document
 - `docs/design-process-learner.pdf` - printable PDF generated from the learner-template HTML document
 - `docs/design-assets/` - brainstorm, mind map, affinity map, and SCAMPER evidence images
-- `prototype-screenshots/` - captured prototype screens used in documentation and presentation
+- `prototype-screenshots/` - captured prototype screens used in documentation

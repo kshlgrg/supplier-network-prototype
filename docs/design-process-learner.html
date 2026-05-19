@@ -21,7 +21,6 @@
     </div>
     <div class="actions">
       <a class="button" href="../index.html">Open Prototype</a>
-      <a class="button" href="../presentation.html">Open Presentation</a>
       <button class="button primary" type="button" onclick="window.print()">Print / Save PDF</button>
     </div>
   </header>
@@ -31,8 +30,7 @@
       <img class="template-logo" src="./design-assets/vypaar-saathi-logo.png" alt="Vypaar Saathi template logo">
       <div class="cover-copy">
         <span class="eyebrow">Vypaar Saathi</span>
-        <h1>Design Process Documentation Template</h1>
-        <p class="lead">A template-aligned, research-style design-process document for a simple supplier network planner that helps small teams add partners, see dependency risk, compare choices, run scenario analysis, and choose a better supplier allocation plan.</p>
+        <h1>Vypaar Saathi Design Process</h1>
         <div class="abstract-card">
           <h2>Abstract</h2>
           <p>This document records the complete design process followed for Vypaar Saathi, from domain discovery and user understanding to ideation, prototype development, usability reasoning, and final reflection. The core design challenge was to make supplier network optimization understandable for MSME and small procurement users who may not have specialist analytical tools, clean data systems, or time for complex dashboards.</p>
@@ -170,7 +168,7 @@
         <div class="phase-card">
           <span class="tag">Active Folder Links</span>
           <h3>Project Evidence</h3>
-          <p><a href="./user-journey.md">User Journey</a>, <a href="./technical-report.md">Technical Report</a>, <a href="../presentation.html">Presentation</a>, <a href="../prototype-screenshots/01-landing.png">Prototype Screenshots</a>, and <a href="../index.html">Live Prototype</a>.</p>
+          <p><a href="./user-journey.md">User Journey</a>, <a href="./technical-report.md">Technical Report</a>, and <a href="./design-process.md">Design Process Notes</a>.</p>
         </div>
       </div>
 
@@ -252,7 +250,7 @@
         </div>
       </div>
 
-      <div class="visual-card" style="margin-top: 16px;">
+      <div class="visual-card compact-evidence" style="margin-top: 16px;">
         <h3>Research Evidence: Affinity Map</h3>
         <div class="evidence-grid">
           <div class="evidence-card">
@@ -292,7 +290,7 @@
           <div class="evidence-card">
             <img src="./design-assets/01-brainstorm.jpeg" alt="Brainstorm board with concept options including guided web tool selected">
             <div class="evidence-body">
-              <p>The team compared multiple formats, including spreadsheet templates, printable scorecards, WhatsApp trackers, ERP plugins, mobile-only apps, dashboards, AI advisors, rating marketplaces, and government data integrations. The guided web tool was selected because it balanced feasibility, desirability, and presentation value.</p>
+          <p>The team compared multiple formats, including spreadsheet templates, printable scorecards, WhatsApp trackers, ERP plugins, mobile-only apps, dashboards, AI advisors, rating marketplaces, and government data integrations. The guided web tool was selected because it balanced feasibility, desirability, and prototype clarity.</p>
             </div>
           </div>
         </div>
@@ -300,9 +298,9 @@
           <span class="tag blue">SCAMPER Model</span>
           <h3>Structured concept refinement</h3>
           <div class="evidence-card">
-            <img src="./design-assets/04-affinity-map.jpeg" alt="SCAMPER model showing substitute, combine, adapt, modify, put to other use, eliminate, and reverse">
+            <img src="./design-assets/04-scamper-model.jpeg" alt="SCAMPER model showing substitute, combine, and reverse design refinements">
             <div class="evidence-body">
-              <p>SCAMPER helped refine the concept: substitute spreadsheets with a guided workspace, combine risk scoring and allocation, adapt weighted-scoring logic, modify labels into plain language, eliminate setup friction, and reverse the workflow so the tool recommends an action.</p>
+              <p>SCAMPER helped refine the concept by replacing spreadsheets with a guided workspace, merging supplier lists, risk scoring, and allocation into one tool, and reversing the workflow so the system recommends an action instead of asking users to analyze raw data alone.</p>
             </div>
           </div>
         </div>
@@ -377,7 +375,7 @@
         <div class="detail-card">
           <span class="tag blue">10. Prototype Development</span>
           <h3>Tools / Materials Used</h3>
-          <p>HTML, CSS, vanilla JavaScript, D3.js, Chart.js, localStorage, Playwright screenshots, GitHub Pages, visual HTML documentation, and printable PDF styling.</p>
+          <p>HTML, CSS, vanilla JavaScript, D3.js, Chart.js, localStorage, Playwright screenshots, static web hosting, visual HTML documentation, and printable PDF styling.</p>
           <h3 style="margin-top: 18px;">Design Principles Applied</h3>
           <p>Progressive disclosure, recognition over recall, visibility of system status, user control, error prevention, immediate feedback, explainability, and recoverability.</p>
         </div>
@@ -422,7 +420,7 @@
           <tr><td>New-user setup</td><td>One guided sign-up path reduced confusion.</td><td>Run real usability tests with target procurement users.</td></tr>
           <tr><td>Data entry</td><td>Partner input updates many downstream screens.</td><td>Add CSV/XLSX import for real supplier master data.</td></tr>
           <tr><td>Analytics</td><td>Simulation and optimization make the project feel professional.</td><td>Calibrate models with historical delivery and disruption data.</td></tr>
-          <tr><td>Documentation</td><td>Presentation, design docs, and screenshots support evaluation.</td><td>Add final user quotes after live testing.</td></tr>
+          <tr><td>Documentation</td><td>Design docs, prototype screenshots, and PDF evidence support evaluation.</td><td>Add final user quotes after live testing.</td></tr>
         </table>
       </div>
 
@@ -489,8 +487,8 @@
           <ul>
             <li>One setup route replaced duplicated onboarding paths.</li>
             <li>Eight prototype screenshots document the full user journey.</li>
-            <li>GitHub Pages deployment makes the prototype available to anyone.</li>
-            <li>Design, technical, presentation, and template-based documentation are complete.</li>
+            <li>Public deployment makes the prototype available to evaluators.</li>
+            <li>Design, technical, learner-template, and screenshot documentation are complete.</li>
             <li>Every key input changes at least one downstream view.</li>
           </ul>
         </div>
@@ -502,7 +500,7 @@
     </section>
 
     <footer class="footer">
-      Vypaar Saathi design-process document completed according to the learner template structure. Related files: prototype, presentation, technical report, user journey, and screenshots.
+      Vypaar Saathi design-process document completed according to the learner template structure. Related files: prototype, technical report, user journey, design notes, and screenshots.
     </footer>
   </main>
 </body>

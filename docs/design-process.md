@@ -81,7 +81,7 @@ The visual language is intentionally operational and dashboard-like. It avoids l
 
 Design choices:
 
-- Dark and light theme support for different presentation environments.
+- Dark and light theme support for different review environments.
 - Compact cards for decision surfaces.
 - Plain-language navigation labels.
 - Chart and graph surfaces for analytical credibility.
@@ -141,16 +141,16 @@ Future accessibility improvements should include:
 - Color-independent risk indicators.
 - Form validation messages tied to fields.
 
-## 10. Presentation Design
+## 10. Documentation Design
 
-The HTML presentation was designed as a browser-native deck instead of a static PowerPoint export because it can be deployed directly beside the prototype.
+The documentation was designed as browser-native HTML and printable PDF instead of only static notes because evaluators can open the same evidence beside the prototype.
 
-Presentation decisions:
+Documentation decisions:
 
 - Arrow-key navigation for live demo flow.
 - Print/PDF support for submission or review.
 - Visual diagrams for product story, data model, journey, architecture, analytics, and optimization.
-- Direct links to prototype, repository, and documentation.
+- Direct links to prototype and documentation.
 - Slide layout responsive enough to open on laptops and projectors.
 
 ## 11. Current Limitations
@@ -188,5 +188,5 @@ Before presenting or shipping a prototype version, verify:
 - Monte Carlo run changes simulation outputs.
 - Best Plan shows allocation, reasons, and constraints.
 - Reset returns to a clean new-user state.
-- Presentation deck opens and moves with arrow keys.
-- Documentation links are available from README and deck.
+- Prototype, markdown notes, visual documentation, and PDFs open correctly.
+- Documentation links are available from README.
