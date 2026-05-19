@@ -41,6 +41,7 @@ Then open `http://127.0.0.1:3000/`.
 - `app.js` - interaction logic and prototype behavior
 - `data.js` - sample data
 - `docs/user-journey.md` - user journey and design rationale
+- `docs/user-transcripts.md` - short prototype interview transcripts
 - `docs/technical-report.md` - technical walkthrough
 - `docs/design-process.md` - design process, usability principles, and validation checklist
 - `docs/design-process.html` - visual and printable version of the design process documentation

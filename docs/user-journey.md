@@ -166,6 +166,7 @@ The next product milestone should add:
 
 ## Sources
 
+- Prototype interview transcripts: `docs/user-transcripts.md`
 - NIST Cybersecurity Supply Chain Risk Management: https://csrc.nist.gov/projects/cyber-supply-chain-risk-management
 - NIST SP 800-161 Rev. 1: https://csrc.nist.gov/pubs/sp/800/161/r1/final
 - ISO 28000 Supply Chain Security Management Systems: https://www.iso.org/standard/79612.html
